@@ -1,0 +1,10 @@
+.witddraw_p {
+    /* color: var(--clr) !important; */
+    color: #ffbf00 !important;
+   margin-top: 12px;
+}
+
+.bb {
+    border-bottom: 1px solid #c1c7cb;
+}
+
