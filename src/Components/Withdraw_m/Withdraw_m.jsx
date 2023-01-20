@@ -103,14 +103,14 @@ function Withdraw_m(props) {
         </Modal.Header>
         <Modal.Body className="body_m_bg bb">
           <div className="container">
-            <div className="row">
+            {/* <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">principal</p>
                   <p className="witddraw_p">{withdrawDetail.totalDeposit} BUSD</p>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
@@ -157,7 +157,7 @@ function Withdraw_m(props) {
                 </div>
               </div>
             </div>
-            <div className="row">
+            {/* <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">Top</p>
@@ -166,7 +166,7 @@ function Withdraw_m(props) {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">

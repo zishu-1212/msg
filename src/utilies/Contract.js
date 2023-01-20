@@ -162,7 +162,7 @@ export const juttoTokenAbi = [
 ];
 
 export const financeAppContractAddress =
-  "0x536e7c80B78d76403C1dDB66AcE7e5Cb559aa929";
+  "0x82bf275Cce9AAE7805126f431D556FC41b0BbDD3";
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -303,6 +303,20 @@ export const financeAppContract_Abi = [
   {
     inputs: [{ internalType: "uint256", name: "_count", type: "uint256" }],
     name: "Mint",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "_distributediamond",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "_distributedoubleDiamond",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -548,6 +562,13 @@ export const financeAppContract_Abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address", name: "_user", type: "address" }],
+    name: "gewttt",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "isFreezeReward",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
@@ -562,10 +583,24 @@ export const financeAppContract_Abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address[]", name: "_user", type: "address[]" }],
+    name: "level4",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     name: "level4Users",
     outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "_user", type: "address[]" }],
+    name: "level5",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -620,18 +655,51 @@ export const financeAppContract_Abi = [
     inputs: [{ internalType: "address", name: "", type: "address" }],
     name: "rewardInfo",
     outputs: [
-      { internalType: "uint256", name: "capitals", type: "uint256" },
       { internalType: "uint256", name: "statics", type: "uint256" },
       { internalType: "uint256", name: "directs", type: "uint256" },
       { internalType: "uint256", name: "diamond", type: "uint256" },
       { internalType: "uint256", name: "doubleDiamond", type: "uint256" },
       { internalType: "uint256", name: "directPool", type: "uint256" },
-      { internalType: "uint256", name: "top", type: "uint256" },
       { internalType: "uint256", name: "split", type: "uint256" },
       { internalType: "uint256", name: "splitDebt", type: "uint256" },
       { internalType: "uint256", name: "totalWithdrawls", type: "uint256" },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "_user", type: "address[]" }],
+    name: "setDeposit",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "_user", type: "address[]" }],
+    name: "setLevel4",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "_user", type: "address[]" }],
+    name: "setLevel5",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "setPools",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_user", type: "address" }],
+    name: "setttt",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -659,13 +727,6 @@ export const financeAppContract_Abi = [
     ],
     name: "teamUsers",
     outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "topPool",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },

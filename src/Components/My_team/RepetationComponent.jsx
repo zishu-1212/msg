@@ -145,7 +145,7 @@ const RepetationComponent = () => {
                   <GiCycle className="icon_color fs-3"></GiCycle>
                 </div>
                 <div>
-                  <p className="stack_p">Income: 7 days per cycle.</p>
+                  <p className="stack_p">Income: 10 days per cycle.</p>
                 </div>
               </div>
               {/* <Countdown
