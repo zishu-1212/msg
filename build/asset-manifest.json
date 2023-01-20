@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e09038f4.css",
+    "main.js": "/static/js/main.59dff09d.js",
+    "static/js/787.72f98075.chunk.js": "/static/js/787.72f98075.chunk.js",
+    "static/media/jutto_token.pdf": "/static/media/jutto_token.a9fdfe5dd802d61a6ae6.pdf",
+    "static/media/binance.png": "/static/media/binance.2c8a99934c273989ea68.png",
+    "static/media/hf.png": "/static/media/hf.10199455836bed831709.png",
+    "static/media/bg.png": "/static/media/bg.1485dd4272bca1bd5e1d.png",
+    "static/media/usdt.jpg": "/static/media/usdt.cf3dc193769b3a29b170.jpg",
+    "static/media/LOGO2.png": "/static/media/LOGO2.5b34edee25fd7d6fa0c5.png",
+    "static/media/MetaMask.webp": "/static/media/MetaMask.119db66acc10c66ea561.webp",
+    "static/media/1200px-Dai_Logo.png": "/static/media/1200px-Dai_Logo.c6d5e411fbbe45deb9d0.png",
+    "static/media/teligram.jpg": "/static/media/teligram.904c7b475eb5ffa124cb.jpg",
+    "static/media/t.png": "/static/media/t.74dc56b454c082b97063.png",
+    "static/media/d3.png": "/static/media/d3.5faa169cb00ac4307bad.png",
+    "static/media/header.svg": "/static/media/header.03a19a3c15d346b4adfd.svg",
+    "index.html": "/index.html",
+    "static/media/cross.svg": "/static/media/cross.31d6cfe0d16ae931b73c.svg",
+    "main.e09038f4.css.map": "/static/css/main.e09038f4.css.map",
+    "main.59dff09d.js.map": "/static/js/main.59dff09d.js.map",
+    "787.72f98075.chunk.js.map": "/static/js/787.72f98075.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e09038f4.css",
+    "static/js/main.59dff09d.js"
+  ]
+}
