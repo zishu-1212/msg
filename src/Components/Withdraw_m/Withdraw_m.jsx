@@ -34,6 +34,7 @@ function Withdraw_m(props) {
     }
   };
   useEffect(() => {
+
     getDetail();
   }, [acc]);
   const withdrawAmount = async () => {

@@ -55,63 +55,55 @@ function Deposite_m(props) {
         );
         const token = new web3.eth.Contract(juttoTokenAbi, juttoTokenAddress);
         if (
-          parseFloat(depositandintrest) >= 50 &&
-          parseFloat(depositandintrest) <= 2500
+          parseInt(depositandintrest) >= 50 &&
+          parseInt(depositandintrest) <= 2500
         ) {
-          const { maxDeposit, referrer } = await contract.methods
-            .userInfo(acc)
-            .call();
+          if (parseInt(depositandintrest) % 50 == 0) {
+            const { maxDeposit, referrer } = await contract.methods
+              .userInfo(acc)
+              .call();
 
-          let value;
-          let approveAmount = parseInt(
-            web3.utils.toWei(depositandintrest)
-          ).toString();
-          console.log("approveAmount", approveAmount, typeof approveAmount);
-          let userTokenBalance = await checkBalance();
-          console.log(
-            " parseInt(web3.utils.toWei(depositandintrest)",
-            approveAmount
-          );
-          // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
-          if (
-            parseFloat(approveAmount) >=
-            parseFloat(web3.utils.fromWei(maxDeposit))
-          ) {
-            if (referrer == "0x0000000000000000000000000000000000000000") {
-              toast.error("please Register Account 1st");
-            } else {
-              setloader(true);
-              console.log("approve");
+            let value;
+            let approveAmount = web3.utils.toWei(depositandintrest)
+            let userTokenBalance = await checkBalance();
 
-              await token.methods
-                .approve(financeAppContractAddress, approveAmount)
-                .send({
+            // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
+            if (
+              parseFloat(approveAmount) >=
+              parseFloat(web3.utils.fromWei(maxDeposit))
+            ) {
+              if (referrer == "0x0000000000000000000000000000000000000000") {
+                toast.error("please Register Account 1st");
+              } else {
+                setloader(true);
+
+                await token.methods
+                  .approve(financeAppContractAddress, approveAmount)
+                  .send({
+                    from: acc,
+                  });
+                await contract.methods.deposit(approveAmount).send({
                   from: acc,
                 });
-              await contract.methods.deposit(approveAmount).send({
-                from: acc,
-              });
-              console.log("approve");
 
-              console.log("after else approve");
-
-              checkFirstTime();
-              dispatch(getRemaintime());
-              dispatch(getpoolDetail());
-              dispatch(getUserRank(acc));
-              dispatch(withdrawInfo(acc));
-              props.onHide();
-              toast.success("Amount Deposited successfully");
-              setloader(false);
+                checkFirstTime();
+                dispatch(getRemaintime());
+                dispatch(getpoolDetail());
+                dispatch(getUserRank(acc));
+                dispatch(withdrawInfo(acc));
+                props.onHide();
+                toast.success("Amount Deposited successfully");
+                setloader(false);
+              }
+            } else {
+              toast.info(
+                `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
+              );
             }
-          } else {
-            toast.info(
-              `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
-            );
           }
-          // }else{
-          //     toast.info("Insuffiecent Token")
-          // }
+          else {
+            toast.info("Please enter value in multiple of 50")
+          }
         } else {
           toast.info("value must be greater then 50 and less then 2500 ");
         }
