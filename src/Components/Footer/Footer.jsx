@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
-import LOGO1 from "../Assets/LOGO2.png"
-import LOGO2 from "../Assets/teligram.jpg"
+import LOGO1 from "../Assets/LOGO2.png";
+import LOGO2 from "../Assets/teligram.jpg";
 // import { SendOutlined } from '@ant-design/icons';
 import { BsTwitter } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
@@ -17,10 +17,8 @@ function Footer() {
         <div className="container">
           <div className="footer_img">
             <a href="#" className="footer_img_ml">
-              <img src={LOGO1} className='www' alt="" />
-
+              <img src={LOGO1} className="www" alt="" />
             </a>
-            
           </div>
           <div className="social">
             {/* <a href="" className="footer_icons ml">
@@ -31,8 +29,8 @@ function Footer() {
               {" "}
               <FaDiscord></FaDiscord>{" "}
             </a> */}
-           <a href="https://t.me/juttosmartgame" className="footer_img_ml" >
-            <img src={LOGO2} className='www' id="img-ip-1" alt="" />
+            <a href="https://t.me/juttosmartgame" className="footer_img_ml">
+              <img src={LOGO2} className="www" id="img-ip-1" alt="" />
             </a>
             {/* <a href="" className="footer_icons ml">
               {" "}
@@ -50,10 +48,12 @@ function Footer() {
         </div>
       </div>
 
-
       <div className="container footer_copy">
         <div className="row justify-content-center py-4">
-          <p className=" footer_text">JUTTO SAMRT GAME © {new Date().getFullYear()} | All Rights Reserved</p>
+          <p className=" footer_text">
+            USBT.SPACE SAMRT GAME © {new Date().getFullYear()} | All Rights
+            Reserved
+          </p>
         </div>
       </div>
     </div>

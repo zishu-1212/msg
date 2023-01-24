@@ -34,7 +34,6 @@ function Withdraw_m(props) {
     }
   };
   useEffect(() => {
-
     getDetail();
   }, [acc]);
   const withdrawAmount = async () => {
@@ -123,7 +122,7 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">1st level Income</p>
+                  <p className="text-white">Direct Referral Income</p>
                   <p className="witddraw_p">{withdrawDetail.capitals} BUSD</p>
                 </div>
               </div>
@@ -132,9 +131,7 @@ function Withdraw_m(props) {
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">Diamond</p>
-                  <p className="witddraw_p">
-                    {withdrawDetail.diamond} BUSD
-                  </p>
+                  <p className="witddraw_p">{withdrawDetail.diamond} BUSD</p>
                 </div>
               </div>
             </div>
@@ -152,12 +149,49 @@ function Withdraw_m(props) {
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">Direct Pool</p>
+                  <p className="witddraw_p">{withdrawDetail.directPool} BUSD</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="d-flex justify-content-between">
+                  <p className="text-white">ROI</p>
+                  <p className="witddraw_p">{withdrawDetail.roi} BUSD</p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="d-flex justify-content-between">
+                  <p className="text-white">Level 1 ROI</p>
                   <p className="witddraw_p">
-                    {withdrawDetail.directPool} BUSD
+                    {withdrawDetail.level1ROIIncome} BUSD
                   </p>
                 </div>
               </div>
             </div>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="d-flex justify-content-between">
+                  <p className="text-white">Level 2-5 ROI</p>
+                  <p className="witddraw_p">
+                    {withdrawDetail.level4ROIIncome} BUSD
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="d-flex justify-content-between">
+                  <p className="text-white">Level 6-15 ROI</p>
+                  <p className="witddraw_p">
+                    {withdrawDetail.level5ROIIncome} BUSD
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
@@ -176,14 +210,6 @@ function Withdraw_m(props) {
                 </div>
               </div>
             </div> */}
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="d-flex justify-content-between">
-                  <p className="text-white">ROI</p>
-                  <p className="witddraw_p">{withdrawDetail.roi} BUSD</p>
-                </div>
-              </div>
-            </div>
           </div>
         </Modal.Body>
         <Modal.Footer className="footer_m_bg">
