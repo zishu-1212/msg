@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e09038f4.css",
-    "main.js": "/static/js/main.c3b96f83.js",
+    "main.js": "/static/js/main.1cd78da8.js",
     "static/js/787.72f98075.chunk.js": "/static/js/787.72f98075.chunk.js",
     "static/media/jutto_token.pdf": "/static/media/jutto_token.a9fdfe5dd802d61a6ae6.pdf",
     "static/media/binance.png": "/static/media/binance.2c8a99934c273989ea68.png",
@@ -18,11 +18,11 @@
     "index.html": "/index.html",
     "static/media/cross.svg": "/static/media/cross.31d6cfe0d16ae931b73c.svg",
     "main.e09038f4.css.map": "/static/css/main.e09038f4.css.map",
-    "main.c3b96f83.js.map": "/static/js/main.c3b96f83.js.map",
+    "main.1cd78da8.js.map": "/static/js/main.1cd78da8.js.map",
     "787.72f98075.chunk.js.map": "/static/js/787.72f98075.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e09038f4.css",
-    "static/js/main.c3b96f83.js"
+    "static/js/main.1cd78da8.js"
   ]
 }

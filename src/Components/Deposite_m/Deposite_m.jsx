@@ -3,14 +3,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { MdArrowBackIos } from "react-icons/md";
 import "./Deposite_m.css";
-import m1 from "../Assets/1200px-Dai_Logo.png";
 import {
   financeAppContractAddress,
   financeAppContract_Abi,
   juttoTokenAddress,
   juttoTokenAbi,
-  busdtokenAbi,
-  busdTokenAddress,
 } from "../../utilies/Contract";
 import { useSelector, useDispatch } from "react-redux";
 import { getpoolDetail, getUserRank } from "../../Redux/poolInfo/action";
@@ -64,7 +61,7 @@ function Deposite_m(props) {
               .call();
 
             let value;
-            let approveAmount = web3.utils.toWei(depositandintrest)
+            let approveAmount = web3.utils.toWei(depositandintrest);
             let userTokenBalance = await checkBalance();
 
             // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
@@ -100,9 +97,8 @@ function Deposite_m(props) {
                 `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
               );
             }
-          }
-          else {
-            toast.info("Please enter value in multiple of 50")
+          } else {
+            toast.info("Please enter value in multiple of 50");
           }
         } else {
           toast.info("value must be greater then 50 and less then 2500 ");

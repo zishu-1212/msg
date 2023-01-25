@@ -24,7 +24,7 @@ function Start() {
             <div>
               <img src={s} alt="" className="sh_img" />
             </div>
-            <h4 className="beni_h4 sh">1.Suuply</h4>
+            <h4 className="beni_h4 sh">1.Supply</h4>
             <p className="text-white">
               Totally supply of USBT.SPACE 21,00,000.
             </p>
