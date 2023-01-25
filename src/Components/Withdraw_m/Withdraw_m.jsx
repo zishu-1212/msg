@@ -38,6 +38,7 @@ function Withdraw_m(props) {
     setInterval(() => {
       getDetail();
     }, 60000);
+    getDetail();
   }, [acc]);
   const withdrawAmount = async () => {
     try {

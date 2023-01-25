@@ -15,6 +15,7 @@ export const withdrawInfo = (acc) => {
       let reward_info = await financeAppcontractOf.methods
         .rewardInfo(acc)
         .call();
+      console.log("reward_info", reward_info);
       let user_info = await financeAppcontractOf.methods.userInfo(acc).call();
       let roi = await financeAppcontractOf.methods.getROIRewards(acc).call();
       let all_val =
