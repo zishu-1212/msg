@@ -33,6 +33,7 @@ function Withdraw_m(props) {
       console.log("error while get detiail", e);
     }
   };
+  ///interval added for checking ROI aftert every one minute
   useEffect(() => {
     setInterval(() => {
       getDetail();
