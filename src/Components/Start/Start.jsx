@@ -35,7 +35,7 @@ function Start() {
             </div>
             <h4 className="beni_h4 sh">2. Circulating Supply</h4>
             <p className="text-white">
-              Circulatin supplu of USBT.SPACE 60,000 (upto October 2022).
+              Circulatin supply of USBT.SPACE 60,000 (upto October 2022).
             </p>
           </div>
           <div className="col-lg-4 start">
