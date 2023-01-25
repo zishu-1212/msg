@@ -3,8 +3,6 @@ import "./Start.css";
 import s from "../Assets/s.png";
 import s1 from "../Assets/s1.png";
 import s2 from "../Assets/s2.png";
-import s4 from "../Assets/s4 .jpeg";
-import s5 from "../Assets/s5.jpeg";
 
 function Start() {
   return (
@@ -25,9 +23,7 @@ function Start() {
               <img src={s} alt="" className="sh_img" />
             </div>
             <h4 className="beni_h4 sh">1.Supply</h4>
-            <p className="text-white">
-              Totally supply of USBT.SPACE 21,00,000.
-            </p>
+            <p className="text-white">Total supply of USBT.SPACE 21,00,000.</p>
           </div>
           <div className="col-lg-4 start">
             <div>
@@ -42,7 +38,7 @@ function Start() {
             <div>
               <img src={s2} alt="" className="sh_img" />
             </div>
-            <h4 className="beni_h4 sh">3. Lock supply</h4>
+            <h4 className="beni_h4 sh">3. Lock Supply</h4>
             <p className="text-white">Lock supply of USBT.SPACE 20,40,000.</p>
           </div>
         </div>

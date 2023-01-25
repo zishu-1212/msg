@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Stack_p.css";
 import { FaUserAlt } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BsStars } from "react-icons/bs";
-import { RiMessage3Fill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 import { getpoolDetail, getUserRank } from "../../Redux/poolInfo/action";
 function Stack_p() {

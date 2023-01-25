@@ -162,7 +162,7 @@ export const juttoTokenAbi = [
 ];
 
 export const financeAppContractAddress =
-  "0x9f1e2452349E770626194304670bc3dD29C5d820";
+  "0x7f289bA16b6Dc91b3eD8CdDba914EC9f802766ca";
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -373,6 +373,20 @@ export const financeAppContract_Abi = [
       { internalType: "bool", name: "", type: "bool" },
       { internalType: "uint256", name: "", type: "uint256" },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "currentDay",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "dailyDeposit",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -609,6 +623,8 @@ export const financeAppContract_Abi = [
     outputs: [
       { internalType: "uint256", name: "amount", type: "uint256" },
       { internalType: "uint256", name: "start", type: "uint256" },
+      { internalType: "uint256", name: "unfreeze", type: "uint256" },
+      { internalType: "bool", name: "isUnfreezed", type: "bool" },
     ],
     stateMutability: "view",
     type: "function",

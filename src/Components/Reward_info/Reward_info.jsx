@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BsArrowUpRight } from "react-icons/bs";
-import { BsArrowDownRight } from "react-icons/bs";
 import { toast } from "react-toastify";
 import {
   financeAppContractAddress,

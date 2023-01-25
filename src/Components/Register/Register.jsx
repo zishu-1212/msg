@@ -2,14 +2,10 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { MdArrowBackIos } from "react-icons/md";
-import { RiRefreshFill } from "react-icons/ri";
 import "./register.css";
-import m1 from "../Assets/m1.png";
 import {
   financeAppContractAddress,
   financeAppContract_Abi,
-  juttoTokenAddress,
-  juttoTokenAbi,
 } from "../../utilies/Contract";
 import { loadWeb3 } from "../../apis/api";
 import Web3 from "web3";

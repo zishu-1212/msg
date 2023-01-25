@@ -14,7 +14,8 @@ function Footer() {
             </a>
           </div>
           <div className="social">
-            <a href="https://t.me/juttosmartgame" className="footer_img_ml">
+            {/* <a href="https://t.me/juttosmartgame" className="footer_img_ml"> */}
+            <a href="#" className="footer_img_ml" alt="">
               <img src={LOGO2} className="www" id="img-ip-1" alt="" />
             </a>
           </div>
@@ -23,7 +24,7 @@ function Footer() {
 
       <div className="container footer_copy">
         <div className="row justify-content-center py-4">
-          <p className=" footer_text">
+          <p className="footer_text">
             USBT.SPACE SAMRT GAME © {new Date().getFullYear()} | All Rights
             Reserved
           </p>

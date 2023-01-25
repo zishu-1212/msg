@@ -57,6 +57,8 @@ export const withdrawInfo = (acc) => {
       obj["level5ROIIncome"] = Number(
         web3.utils.fromWei(reward_info?.level5ROIIncome)
       ).toFixed(2);
+      obj["split"] = Number(web3.utils.fromWei(reward_info?.split)).toFixed(2);
+
       dispatch({ type: ActionTypes.WITHDRAW_INFO, payload: obj });
     } catch (error) {}
   };
