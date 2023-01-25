@@ -52,7 +52,7 @@ function Withdraw_m(props) {
             financeAppContract_Abi,
             financeAppContractAddress
           );
-          await financeAppcontractOf.methods.Withdrawal().send({
+          await financeAppcontractOf.methods.withdraw().send({
             from: acc,
           });
           getDetail();
