@@ -85,17 +85,17 @@ function Stacking_top() {
                         <IoPeople className="iicon" /> <h3>Latest Deposit</h3>
                       </div>
                     </Link>
-                    <Link to="/Dashboard/Reward_info" onClick={handleClose}>
+                    {/* <Link to="/Dashboard/Reward_info" onClick={handleClose}>
                       <div className="lenkk">
                         <IoCalendar className="iicon" /> <h3>Reward Info</h3>
                       </div>
-                    </Link>
+                    </Link> */}
 
-                    <Link to="/Dashboard/My_team" onClick={handleClose}>
+                    {/* <Link to="/Dashboard/My_team" onClick={handleClose}>
                       <div className="lenkk">
                         <IoPeople className="iicon" /> <h3>My Team</h3>
                       </div>
-                    </Link>
+                    </Link> */}
                     <Link to="/Dashboard/Deposit_details" onClick={handleClose}>
                       <div className="lenkk">
                         <TbMessageDots className="iicon" />{" "}

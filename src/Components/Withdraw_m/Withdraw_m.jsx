@@ -17,6 +17,7 @@ function Withdraw_m(props) {
   let { withdrawDetail } = useSelector((state) => state.withDrawInfo);
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
+  const [loader2, setLoader2] = useState(false);
   const getDetail = async () => {
     try {
       if (acc == "No Wallet") {
@@ -71,6 +72,35 @@ function Withdraw_m(props) {
     } catch (e) {
       setLoader(false);
       console.log(e);
+    }
+  };
+  const handleUpdateROI = async () => {
+    try {
+      if (acc == "No Wallet") {
+        toast.info("No Wallet");
+      } else if (acc == "Wrong Network") {
+        toast.info("Wrong Wallet");
+      } else if (acc == "Connect Wallet") {
+        toast.info("Connect Wallet");
+      } else {
+        setLoader2(true);
+        const web3 = window.web3;
+        let financeAppcontractOf = new web3.eth.Contract(
+          financeAppContract_Abi,
+          financeAppContractAddress
+        );
+        await financeAppcontractOf.methods.claimROIReward().send({
+          from: acc,
+        });
+        getDetail();
+        toast.success("successfully Updated ROI");
+        setLoader2(false);
+      }
+    } catch (e) {
+      console.log(e);
+      setLoader2(false);
+
+      toast.error("Transaction Failed");
     }
   };
   return (
@@ -267,6 +297,24 @@ function Withdraw_m(props) {
               />
             ) : (
               "Withdraw"
+            )}
+          </Button>
+          <Button
+            className="s_d_Ws  w-100"
+            onClick={() => {
+              handleUpdateROI();
+            }}
+          >
+            {loader2 ? (
+              <ReactLoading
+                type="spin"
+                color="#ffffff"
+                className="mb-2 mx-auto"
+                height={30}
+                width={30}
+              />
+            ) : (
+              "Update ROI"
             )}
           </Button>
         </Modal.Footer>

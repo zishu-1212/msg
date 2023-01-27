@@ -32,6 +32,7 @@ export const getUserRank = (acc) => {
         financeAppContractAddress
       );
       let { level } = await financeAppcontractOf.methods.userInfo(acc).call();
+      console.log("level", level);
       let userRank = "";
       if (level == 0) {
         userRank = "";

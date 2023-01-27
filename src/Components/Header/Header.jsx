@@ -54,7 +54,7 @@ function Header() {
                       <IoPeople className="iicon" /> <h3>Latest Deposit</h3>
                     </div>
                   </Link>
-                  <Link to="/Dashboard/Reward_info">
+                  {/* <Link to="/Dashboard/Reward_info">
                     <div className="lenkk">
                       <IoCalendar className="iicon" /> <h3>Reward Info</h3>
                     </div>
@@ -64,7 +64,7 @@ function Header() {
                     <div className="lenkk">
                       <IoPeople className="iicon" /> <h3>My Team</h3>
                     </div>
-                  </Link>
+                  </Link> */}
                   <Link to="/Dashboard/Deposit_details">
                     <div className="lenkk">
                       <TbMessageDots className="iicon" />{" "}

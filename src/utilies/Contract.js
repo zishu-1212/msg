@@ -162,7 +162,7 @@ export const juttoTokenAbi = [
 ];
 
 export const financeAppContractAddress =
-  "0x7f289bA16b6Dc91b3eD8CdDba914EC9f802766ca";
+  "0xCC74ceb5cD3Ea53cc80ecdFa48C488EF22666522";
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -374,6 +374,13 @@ export const financeAppContract_Abi = [
       { internalType: "uint256", name: "", type: "uint256" },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "claimROIReward",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -765,7 +772,6 @@ export const financeAppContract_Abi = [
     type: "function",
   },
 ];
-
 export const busdTokenAddress = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56";
 
 export const busdtokenAbi = [
