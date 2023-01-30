@@ -106,7 +106,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -116,7 +116,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust2">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -141,12 +141,12 @@ const RepetationComponent = () => {
                 </div>
               </div>
               <div className="d-flex stact_inner">
-                <div className="div">
+                {/* <div className="div">
                   <GiCycle className="icon_color fs-3"></GiCycle>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <p className="stack_p">Income: 10 days per cycle.</p>
-                </div>
+                </div> */}
               </div>
               {/* <Countdown
                 date={Date.now() + (parseInt(remaintime) * 1000 - Date.now())}

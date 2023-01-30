@@ -37,15 +37,15 @@ function Reward_info() {
         if (level == 0) {
           setReward("");
         } else if (level == 1) {
-          setReward("Player");
+          setReward("1");
         } else if (level == 2) {
-          setReward("Scorer");
+          setReward("2");
         } else if (level == 3) {
-          setReward("All Rounder");
+          setReward("3");
         } else if (level == 4) {
-          setReward("Vice Captain");
+          setReward("Diamond");
         } else if (level == 5) {
-          setReward("Captain");
+          setReward("Double Diamond");
         }
       }
     } catch (e) {

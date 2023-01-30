@@ -37,15 +37,15 @@ export const getUserRank = (acc) => {
       if (level == 0) {
         userRank = "";
       } else if (level == 1) {
-        userRank = "Player";
+        userRank = "1";
       } else if (level == 2) {
-        userRank = "Scorer";
+        userRank = "2";
       } else if (level == 3) {
-        userRank = "All Rounder";
+        userRank = "3";
       } else if (level == 4) {
-        userRank = "Vice Captain";
+        userRank = "Diamond";
       } else if (level == 5) {
-        userRank = "Captain";
+        userRank = "Double Diamond";
       }
       dispatch({ type: ActionTypes.USER_RANK, payload: userRank });
     } catch (error) {

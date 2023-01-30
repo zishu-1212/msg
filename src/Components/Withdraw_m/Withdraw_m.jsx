@@ -266,7 +266,7 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Total withdraw</p>
+                  <p className="text-white">Total Withdrawable</p>
                   <p className="witddraw_p">{withdrawDetail?.all_val} BUSD</p>
                 </div>
               </div>
