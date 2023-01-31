@@ -1,13 +1,28 @@
-.img_sa{
-    width: 30px !important;
-    height: 30px !important;
+.img_sa {
+  width: 30px !important;
+  height: 30px !important;
 }
 
-.gsaa{
-    margin-top: 36px !important;
-    margin-left: 15% !important;
-    gap: 20px !important;
+.gsaa {
+  margin-top: 36px !important;
+  margin-left: 15% !important;
+  gap: 20px !important;
 }
-.asasaa{
-    margin-top: 0px !important;
+.asasaa {
+  margin-top: 0px !important;
+}
+.input_modal {
+  width: 100%;
+  padding: 10px 10px 10px 20px;
+  background-color: #0a1f2f !important;
+
+  color: white !important;
+  border-radius: 10px !important;
+  /* border: 1px solid var(--clr) !important; */
+  border: #ffbf00 1px solid !important;
+}
+
+.input_modal:focus {
+  /* border: 1px solid var(--clr) !important; */
+  border: #ffbf00 1px solid !important;
 }

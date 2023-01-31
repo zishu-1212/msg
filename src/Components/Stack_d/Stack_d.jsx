@@ -9,6 +9,7 @@ import Deposite_m from "../Deposite_m/Deposite_m";
 import Button from "react-bootstrap/Button";
 import Withdraw_m from "../Withdraw_m/Withdraw_m";
 import Register from "../Register/Register";
+import Split_m from "../Split_m/Split_m";
 
 function Stack_d() {
   const [modalShow, setModalShow] = useState(false);
@@ -69,18 +70,21 @@ function Stack_d() {
                     />
                   </div>
                 </div>
-                {/* <div className="col-lg-6 mt-3">
-                                    <div className="card stack_sub_cards">
-                                        <img src={d1} alt="" className='stack_d_img' />
-                                        <Button className='start_btn s_d_W' onClick={() => setModalShow2(true)}>
-                                            Split Account
-                                        </Button>
-                                        <Split_m
-                                            show={modalShow2}
-                                            onHide={() => setModalShow2(false)}
-                                        />
-                                    </div>
-                                </div> */}
+                <div className="col-lg-6 mt-3">
+                  <div className="card stack_sub_cards">
+                    <img src={d1} alt="" className="stack_d_img" />
+                    <Button
+                      className="start_btn s_d_W"
+                      onClick={() => setModalShow2(true)}
+                    >
+                      Transfer Split
+                    </Button>
+                    <Split_m
+                      show={modalShow2}
+                      onHide={() => setModalShow2(false)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

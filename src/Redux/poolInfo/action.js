@@ -37,11 +37,11 @@ export const getUserRank = (acc) => {
       if (level == 0) {
         userRank = "";
       } else if (level == 1) {
-        userRank = "1";
+        userRank = "None";
       } else if (level == 2) {
-        userRank = "2";
+        userRank = "None";
       } else if (level == 3) {
-        userRank = "3";
+        userRank = "None";
       } else if (level == 4) {
         userRank = "Diamond";
       } else if (level == 5) {
