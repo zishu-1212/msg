@@ -37,11 +37,11 @@ function Reward_info() {
         if (level == 0) {
           setReward("");
         } else if (level == 1) {
-          setReward("1");
+          setReward("None");
         } else if (level == 2) {
-          setReward("2");
+          setReward("None");
         } else if (level == 3) {
-          setReward("3");
+          setReward("None");
         } else if (level == 4) {
           setReward("Diamond");
         } else if (level == 5) {
