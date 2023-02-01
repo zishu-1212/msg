@@ -46,8 +46,8 @@ function Split_m(props) {
           if (parseFloat(split) >= parseInt(amount)) {
             if (parseFloat(totalDeposit) == 0) {
               if (parseInt(amount) % 50 === 0) {
-                if (referrer == "0x0000000000000000000000000000000000000000") {
-                  toast.error("please Register Account 1st ");
+                if (referrer == "0x000000000000000000000000000000000") {
+                  toast.error("please Register Account first ");
                 } else {
                   setloader(true);
                   let value = web3.utils.toWei(amount);
@@ -70,7 +70,7 @@ function Split_m(props) {
             toast.info("You don't have any split amount");
           }
         } else {
-          toast.info("value must be greater then 50 and less then 5000 ");
+          toast.info("value must be greater then 50 ");
         }
       }
     } catch (error) {
@@ -101,34 +101,29 @@ function Split_m(props) {
             .call();
           const split = await contract.methods.getCurSplit(acc).call();
           if (parseFloat(split) >= parseInt(amount)) {
-            if (parseFloat(totalDeposit) == 0) {
-              if (parseInt(amount) % 50 === 0) {
-                if (referrer == "0x0000000000000000000000000000000000000000") {
-                  toast.error("please Register Account 1st ");
-                } else {
-                  setloader(true);
-                  let value = web3.utils.toWei(amount);
-                  await contract.methods
-                    .transferBySplit(recieverAdress, value)
-                    .send({
-                      from: acc,
-                    });
-                  setdepositcheck(1);
-                  toast.success("Amount Deposited successfully");
-                  setloader(false);
-                }
+            if (parseInt(amount) % 50 === 0) {
+              if (referrer == "0x0000000000000000000000000000000000000000") {
+                toast.error("please Register Account 1st ");
               } else {
-                toast.error("please enter value in ratio 50 ");
+                setloader(true);
+                let value = web3.utils.toWei(amount);
+                await contract.methods
+                  .transferBySplit(recieverAdress, value)
+                  .send({
+                    from: acc,
+                  });
+                setdepositcheck(1);
+                toast.success("Amount Deposited successfully");
+                setloader(false);
               }
             } else {
-              setdepositcheck(1);
-              toast.info("you have already deposited");
+              toast.error("please enter value in ratio 50 ");
             }
           } else {
             toast.info("You don't have any split amount");
           }
         } else {
-          toast.info("value must be greater then 50 and less then 50000 ");
+          toast.info("value must be greater then 50 ");
         }
       }
     } catch (error) {
@@ -174,7 +169,7 @@ function Split_m(props) {
 
   useEffect(() => {
     getsplit();
-  }, []);
+  }, [acc]);
 
   return (
     <div>
@@ -226,9 +221,8 @@ function Split_m(props) {
                   <div className="col-lg-4">
                     <div className="d-flex gsaa">
                       <div>
-                        <p className="input_sub_p asasaa ">
-                          {getsplit_Value} Amount
-                        </p>
+                        <p className="input_sub_p asasaa ">Split Amount</p>
+                        <p className="input_sub_p asasaa ">{getsplit_Value}</p>
                       </div>
                     </div>
                   </div>
@@ -273,8 +267,9 @@ function Split_m(props) {
                   <div className="col-lg-4">
                     <div className="d-flex gsaa">
                       <div>
-                        <p className="input_sub_p asasaa ">
-                          {getsplit_Value} Split Amount
+                        <p className="input_sub_p asasaa ">Split Amount</p>
+                        <p className="input_sub_p asasaa m-0 p-0 text-center">
+                          {getsplit_Value}
                         </p>
                       </div>
                     </div>
