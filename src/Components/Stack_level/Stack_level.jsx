@@ -20,7 +20,6 @@ function Stack_level() {
   const [userIncome, setUserIncome] = useState("");
   const [userAccountbalance, setUserAccountBalance] = useState("");
   const [copyTest, setcopyTest] = useState(false);
-  let { withdrawDetail } = useSelector((state) => state.withDrawInfo);
   const getDetail = async () => {
     try {
       if (acc == "No Wallet") {
@@ -96,10 +95,10 @@ function Stack_level() {
                                 /></h6>
 
                             </div> */}
-              <div className="d-flex S_sss">
+              {/* <div className="d-flex S_sss">
                 <p className="s_l_p">Income:</p>
                 <p className=" aliment">{withdrawDetail?.all_val}</p>
-              </div>
+              </div> */}
               <div className="d-flex S_sss">
                 <p className="s_l_p">BNB Balance:</p>
                 <p className=" aliment">{userAccountbalance}</p>
