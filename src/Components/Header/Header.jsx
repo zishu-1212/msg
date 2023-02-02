@@ -11,7 +11,8 @@ import { IoPeople } from "react-icons/io5";
 import { IoCalendar } from "react-icons/io5";
 import { TbMessageDots } from "react-icons/tb";
 import { FaFolderMinus } from "react-icons/fa";
-import jutto_token from "../Assets/jutto_token.pdf";
+// import jutto_token from "../Assets/jutto_token.pdf";
+import wyz from "../Assets/Document/wyzth.pdf";
 function Header() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -72,7 +73,7 @@ function Header() {
                     </div>
                   </Link>
 
-                  <a href={`${jutto_token}`} target="_blank">
+                  <a href={wyz} target="_blank">
                     <div className="lenkk">
                       <FaFolderMinus className="iicon" /> <h3>Rules</h3>
                     </div>
