@@ -20,7 +20,6 @@ function Stack_level() {
   const [userIncome, setUserIncome] = useState("");
   const [userAccountbalance, setUserAccountBalance] = useState("");
   const [copyTest, setcopyTest] = useState(false);
-
   const getDetail = async () => {
     try {
       if (acc == "No Wallet") {
@@ -48,10 +47,10 @@ function Stack_level() {
         let userinfo = await financeAppcontractOf.methods.userInfo(acc).call();
 
         setMyLevel(userinfo.level);
-        let userincome = web3.utils.fromWei(userinfo.totalRevenue);
-        userincome = parseFloat(userincome).toFixed(2);
+        // let userincome = web3.utils.fromWei(userinfo.totalRevenue);
+        // userincome = parseFloat(userincome).toFixed(2);
 
-        setUserIncome(userincome);
+        // setUserIncome(userincome);
 
         let balance = new web3.eth.getBalance(acc).then((response) => {
           let userBalance = web3.utils.fromWei(response);
@@ -96,10 +95,10 @@ function Stack_level() {
                                 /></h6>
 
                             </div> */}
-              <div className="d-flex S_sss">
+              {/* <div className="d-flex S_sss">
                 <p className="s_l_p">Income:</p>
-                <p className=" aliment">{Number(userIncome).toFixed(2)}</p>
-              </div>
+                <p className=" aliment">{withdrawDetail?.all_val}</p>
+              </div> */}
               <div className="d-flex S_sss">
                 <p className="s_l_p">BNB Balance:</p>
                 <p className=" aliment">{userAccountbalance}</p>
