@@ -4,6 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { getpoolDetail, getUserRank } from "../../Redux/poolInfo/action";
+import RankIcon from "../Assets/icons.png";
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);
@@ -52,7 +53,12 @@ function Stack_p() {
                   <div className="card inner_stack_p">
                     <div className="mt-3">
                       {" "}
-                      <AiOutlineShoppingCart className="icon_color fs-3"></AiOutlineShoppingCart>
+                      <img
+                        src={RankIcon}
+                        width={"40px"}
+                        className="icon_color fs-3"
+                        alt=""
+                      ></img>
                     </div>
 
                     <div className="mt-3">
