@@ -149,8 +149,8 @@ function Deposite_m(props) {
                     <Button
                       onClick={() => props.onHide()}
                       style={{
-                        backgroundColor: "#008a81",
-                        border: "1px solid #008a81",
+                        backgroundColor: "#00A79D",
+                        border: "1px solid #00A79D",
                       }}
                     >
                       <MdArrowBackIos></MdArrowBackIos>

@@ -5,7 +5,7 @@
 
 .start:hover .sh {
   /* color: var(--clr) !important; */
-  color: #008a81   !important;
+  color: #00a79d !important;
 }
 
 .start:hover .sh_img {
@@ -28,7 +28,7 @@
   transform-origin: right;
   transition: all 0.3s ease;
   /* background: #28DBD1; */
-  background-color: #008a81;
+  background-color: #00a79d;
   border: 1px solid transparent;
   font-weight: 600;
 }
@@ -37,6 +37,6 @@
   color: white !important;
   transform: translateY(-3px);
   background: transparent !important;
-  border-color: #008a81 !important;
+  border-color: #00a79d !important;
   /* box-shadow: 0 0 10px rgb(40 219 209 / 40%); */
 }

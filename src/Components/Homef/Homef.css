@@ -4,12 +4,13 @@
 }
 
 .homef_h1 {
-  font-size: 3rem;
+  font-size: 2rem;
+  margin-top: 10px;
   margin-bottom: 15px;
   text-transform: uppercase !important;
   font-family: "Rajdhani", sans-serif;
   color: #008a81 !important;
-  line-height: 1.25;
+  /* line-height: 1.25; */
   font-weight: 700;
   text-align: left;
 }
