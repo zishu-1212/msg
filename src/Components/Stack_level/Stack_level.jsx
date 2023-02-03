@@ -104,8 +104,8 @@ function Stack_level() {
                 <p className=" aliment">{userAccountbalance}</p>
               </div>
               <div className="d-flex S_sss">
-                <p className="s_l_p">BUSD Balance:</p>
-                <p className=" aliment ">{usdtBalance} BUSD</p>
+                <p className="s_l_p">USDT Balance:</p>
+                <p className=" aliment ">{usdtBalance} USDT</p>
               </div>
               <div className="d-flex S_sss">
                 <p className="s_l_p">Referral:</p>
