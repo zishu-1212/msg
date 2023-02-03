@@ -1,6 +1,6 @@
 import React from "react";
 import "./Homef.css";
-import hf from "../Assets/hf.png";
+import hf from "../Assets/V6.png";
 function Homef() {
   return (
     <div className="homef_main">

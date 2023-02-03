@@ -13,6 +13,7 @@ import { TbMessageDots } from "react-icons/tb";
 import { FaFolderMinus } from "react-icons/fa";
 // import jutto_token from "../Assets/jutto_token.pdf";
 import wyz from "../Assets/Document/wyzth.pdf";
+import LOGO1 from "../Assets/LOGO2.png";
 function Header() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -20,7 +21,11 @@ function Header() {
   return (
     <div className="header_main">
       <Navbar collapseOnSelect expand="lg" className="nav_bg">
+        
         <Container>
+        <Link to="/">
+          <img src={LOGO1} className="stackig_top_logo" alt="" />
+        </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
