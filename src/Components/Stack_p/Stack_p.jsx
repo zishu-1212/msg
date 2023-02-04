@@ -82,8 +82,8 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2">Participants</h3>
-                      <p className="mt-3 text-white text-start">{totalUsers}</p>
+                      <h3 className="stack_p_h3 mb-2 stack_part">Participants</h3>
+                      <p className="mt-3 text-white stack_p_responsive">{totalUsers}</p>
                     </div>
                   </div>
                 </div>
@@ -100,8 +100,8 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2">User Rank</h3>
-                      <p className="mt-3 text-white text-start">
+                      <h3 className="stack_p_h3 stack_responsive mb-2">User Rank</h3>
+                      <p className="mt-3 text-white stack_p_responsive ">
                         {userRank ? userRank : "No Rank"}
                       </p>
                     </div>
@@ -115,10 +115,10 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2">
+                      <h3 className="stack_p_h3 stack_responsive mb-2">
                         Booster Remaining Time
                       </h3>
-                      <p className="stack_p">
+                      <p className="stack_p stack_p_responsive">
                         {boosterTime}
                         {/* Platform Running Time: {depositTime} days */}
                       </p>
@@ -132,10 +132,10 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2">
+                      <h3 className="stack_p_h3 stack_responsive mb-2">
                         Cycle Reward Remaining Time
                       </h3>
-                      <p className="stack_p">
+                      <p className="stack_p stack_p_responsive">
                         {rewardTime}
                         {/* Platform Running Time: {depositTime} days */}
                       </p>

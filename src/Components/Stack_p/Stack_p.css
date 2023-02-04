@@ -26,3 +26,28 @@
 .icon_color {
   color: #22616a !important;
 }
+@media(max-width:1024px){
+  .inner_stack_p{
+    gap: 0 !important;
+  }
+  .stack_responsive{
+    margin-right: 30px;
+    font-size: 13px;
+  }
+}
+@media(max-width:428px){
+  .inner_stack_p{
+    gap: 0 !important;
+  }
+  .stack_responsive{
+    margin-right: 30px;
+    font-size: 13px;
+  }
+  .stack_p_responsive{
+    text-align: center !important;
+  }
+  .stack_part{
+    margin-left: 20px;
+  }
+ 
+}

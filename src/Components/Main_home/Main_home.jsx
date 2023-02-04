@@ -6,11 +6,13 @@ import Start from '../Start/Start'
 import Tier from '../Tier/Tier'
 import Roadmap from '../Roadmap/Roadmap'
 import Project_images from '../Project_images/Project_images'
+import Stacking_Top from "../Stacking_top/Stacking_top"
 
 function Main_home() {
   return (
     <div>
-      <Header />
+      <Stacking_Top/>
+      {/* <Header /> */}
       <Homef />
       <Start />
       {/* <Project_images /> */}

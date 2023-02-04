@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LOGO1 from "../Assets/LOGO2.png";
 import "./Stacking_top.css";
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import jutto_token from "../Assets/jutto_token.pdf";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiMenu } from "react-icons/bi";
@@ -19,6 +19,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { connectionAction } from "../../Redux/connection/actions";
 
 function Stacking_top() {
+  const[connectBtn, SetConnectBtn]=useState("");
+  const pathname= useLocation();
+  const changePath = () =>{
+    if(pathname?.pathname=="/"){
+      
+      SetConnectBtn(false);
+    }
+    else{
+      SetConnectBtn(true)
+    }
+  }
+  useEffect(()=>{
+    changePath();
+  })
   const dispatch = useDispatch();
   let acc = useSelector((state) => state.connect?.connection);
   const [show, setShow] = useState(false);
@@ -31,7 +45,6 @@ function Stacking_top() {
   const onConnectAccount = () => {
     dispatch(connectionAction());
   };
-
   return (
     <>
       <div className="stacking_top">
@@ -42,7 +55,7 @@ function Stacking_top() {
                 <img src={LOGO1} className="stackig_top_logo" alt="" />
               </Link>
               <div className="both_dev">
-                <button className="stack_btn_s" onClick={onConnectAccount}>
+                <button className={`stack_btn_s ${connectBtn?"":"d-none"}`} onClick={onConnectAccount}>
                   {" "}
                   {acc === "No Wallet"
                     ? "Connect"
@@ -85,17 +98,7 @@ function Stacking_top() {
                         <IoPeople className="iicon" /> <h3>Latest Deposit</h3>
                       </div>
                     </Link>
-                    {/* <Link to="/Dashboard/Reward_info" onClick={handleClose}>
-                      <div className="lenkk">
-                        <IoCalendar className="iicon" /> <h3>Reward Info</h3>
-                      </div>
-                    </Link> */}
-
-                    {/* <Link to="/Dashboard/My_team" onClick={handleClose}>
-                      <div className="lenkk">
-                        <IoPeople className="iicon" /> <h3>My Team</h3>
-                      </div>
-                    </Link> */}
+                  
                     <Link to="/Dashboard/Deposit_details" onClick={handleClose}>
                       <div className="lenkk">
                         <TbMessageDots className="iicon" />{" "}
@@ -129,7 +132,6 @@ function Stacking_top() {
           path="/Dashboard/Deposit_details"
           element={<Deposit_details />}
         />
-        {/* </Route> */}
       </Routes>
       <Outlet />
     </>

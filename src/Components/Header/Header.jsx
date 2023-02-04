@@ -29,7 +29,6 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              {/* <Nav.Link  > */}
               <a className="user px-2" onClick={handleShow}>
                 <BiMenu />
               </a>
@@ -60,17 +59,7 @@ function Header() {
                       <IoPeople className="iicon" /> <h3>Latest Deposit</h3>
                     </div>
                   </Link>
-                  {/* <Link to="/Dashboard/Reward_info">
-                    <div className="lenkk">
-                      <IoCalendar className="iicon" /> <h3>Reward Info</h3>
-                    </div>
-                  </Link>
-
-                  <Link to="/Dashboard/My_team">
-                    <div className="lenkk">
-                      <IoPeople className="iicon" /> <h3>My Team</h3>
-                    </div>
-                  </Link> */}
+                  
                   <Link to="/Dashboard/Deposit_details">
                     <div className="lenkk">
                       <TbMessageDots className="iicon" />{" "}
@@ -85,8 +74,6 @@ function Header() {
                   </a>
                 </Offcanvas.Body>
               </Offcanvas>
-
-              {/* </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
