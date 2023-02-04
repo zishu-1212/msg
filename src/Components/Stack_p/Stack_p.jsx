@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Stack_p.css";
 import { FaUserAlt } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -6,16 +6,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { getpoolDetail, getUserRank } from "../../Redux/poolInfo/action";
 import RankIcon from "../Assets/icons.png";
 import { BsFillStopwatchFill } from "react-icons/bs";
+import { financeAppContractAddress, financeAppContract_Abi } from "../../utilies/Contract";
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);
   let { userRank } = useSelector((state) => state.userRank);
-
+  const [boosterTime, setBoosterTime] = useState(0);
+  const [rewardTime, setRewardTime] = useState(0)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getpoolDetail());
   }, []);
-  const getRank = () => {
+  const getRank = async () => {
     if (acc == "No Wallet") {
       console.log("No Wallet");
     } else if (acc == "Wrong Network") {
@@ -26,10 +28,45 @@ function Stack_p() {
       dispatch(getUserRank(acc));
     }
   };
+  const getBoosterTime = async () => {
+    try {
+      if (acc == "No Wallet") {
+        console.log("No Wallet");
+      } else if (acc == "Wrong Network") {
+        console.log("Wrong Wallet");
+      } else if (acc == "Connect Wallet") {
+        console.log("Connect Wallet");
+      } else {
+        const web3 = window.web3;
+        let financeAppcontractOf = new web3.eth.Contract(financeAppContract_Abi, financeAppContractAddress);
+        let booster = await financeAppcontractOf.methods.getTimeDiffer(acc).call()
+        let boostert = await financeAppcontractOf.methods.boosterDay().call()
+        let reward = await financeAppcontractOf.methods.getOrderLength(acc).call()
+        reward = await financeAppcontractOf.methods.getROI(acc, reward - 1).call();
+        setRewardTime(reward[0])
+        if (booster < boostert) {
+          setBoosterTime(boostert - booster)
+        }
+        else {
+          setBoosterTime(0)
+        }
+      }
+    }
+    catch (error) {
+      console.log("error", error)
+    }
+  };
   useEffect(() => {
     getRank();
   }, [acc]);
 
+  useEffect(() => {
+    setInterval(() => {
+      getBoosterTime()
+    }, 30000)
+    getBoosterTime()
+
+  }, [acc])
   return (
     <div className="main_stack_p_bg">
       <div className="container">
@@ -82,6 +119,7 @@ function Stack_p() {
                         Booster Remaining Time
                       </h3>
                       <p className="stack_p">
+                        {boosterTime}
                         {/* Platform Running Time: {depositTime} days */}
                       </p>
                     </div>
@@ -98,6 +136,7 @@ function Stack_p() {
                         Cycle Reward Remaining Time
                       </h3>
                       <p className="stack_p">
+                        {rewardTime}
                         {/* Platform Running Time: {depositTime} days */}
                       </p>
                     </div>
