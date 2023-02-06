@@ -25,25 +25,24 @@ function Benifits() {
             <br />
             <ul>
               <li className="text-white justify">
-                Everyone is qualified for tier 1 income
+                Everyone is qualified for tier 1 income.
               </li>
-         
+
               <li className="text-white justify">
-                All income will be Split in the ratio of70% USDT & 30% RIF A/c.
+                All income will be Split in the ratio of 70% USDT & 30% RIF A/c.
               </li>
-           
+
               <li className="text-white justify">
-                After 3 X of your Trade package the split ratio will be
-                to change to 70% RIF A/c & 30% USDT
+                After 3 X of your Trade package the split ratio will be to
+                change to 70% RIF A/c & 30% USDT.
               </li>
-             
+
               <li className="text-white justify">
-                Split Fund transfer will be minmum 50$ & in multiple of 50$
-                
+                Split Fund transfer will be minimum 50$ & in multiple of 50$.
               </li>
               <li className="text-white justify">
-                USBT will launch its own Token in future as community grows to deal with
-                any deficit of USDT in Smart Contract .
+                USBT will launch its own Token in future as community grows to
+                deal with any deficit of USDT in Smart Contract .
               </li>
             </ul>
           </div>
