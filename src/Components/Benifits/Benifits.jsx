@@ -25,18 +25,18 @@ function Benifits() {
             <br />
             <ul>
               <li className="text-white justify">
-                Everyone is qualified for tier1income
+                Everyone is qualified for tier 1 income
               </li>
-              <br />
+         
               <li className="text-white justify">
                 All income will be Split in the ratio of70% USDT & 30% RIF A/c.
               </li>
-              <br />
+           
               <li className="text-white justify">
                 After 3 X of your Trade package the split ratio will be
                 to change to 70% RIF A/c & 30% USDT
               </li>
-              <br />
+             
               <li className="text-white justify">
                 Split Fund transfer will be minmum 50$ & in multiple of 50$
                 
