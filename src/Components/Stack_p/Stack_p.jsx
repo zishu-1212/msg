@@ -6,13 +6,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { getpoolDetail, getUserRank } from "../../Redux/poolInfo/action";
 import RankIcon from "../Assets/icons.png";
 import { BsFillStopwatchFill } from "react-icons/bs";
-import { financeAppContractAddress, financeAppContract_Abi } from "../../utilies/Contract";
+import {
+  financeAppContractAddress,
+  financeAppContract_Abi,
+} from "../../utilies/Contract";
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);
   let { userRank } = useSelector((state) => state.userRank);
   const [boosterTime, setBoosterTime] = useState(0);
-  const [rewardTime, setRewardTime] = useState(0)
+  const [rewardTime, setRewardTime] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getpoolDetail());
@@ -38,22 +41,29 @@ function Stack_p() {
         console.log("Connect Wallet");
       } else {
         const web3 = window.web3;
-        let financeAppcontractOf = new web3.eth.Contract(financeAppContract_Abi, financeAppContractAddress);
-        let booster = await financeAppcontractOf.methods.getTimeDiffer(acc).call()
-        let boostert = await financeAppcontractOf.methods.boosterDay().call()
-        let reward = await financeAppcontractOf.methods.getOrderLength(acc).call()
-        reward = await financeAppcontractOf.methods.getROI(acc, reward - 1).call();
-        setRewardTime(reward[0])
+        let financeAppcontractOf = new web3.eth.Contract(
+          financeAppContract_Abi,
+          financeAppContractAddress
+        );
+        let booster = await financeAppcontractOf.methods
+          .getTimeDiffer(acc)
+          .call();
+        let boostert = await financeAppcontractOf.methods.boosterDay().call();
+        let reward = await financeAppcontractOf.methods
+          .getOrderLength(acc)
+          .call();
+        reward = await financeAppcontractOf.methods
+          .getROI(acc, reward - 1)
+          .call();
+        setRewardTime(reward[0]);
         if (booster < boostert) {
-          setBoosterTime(boostert - booster)
-        }
-        else {
-          setBoosterTime(0)
+          setBoosterTime(boostert - booster);
+        } else {
+          setBoosterTime(0);
         }
       }
-    }
-    catch (error) {
-      console.log("error", error)
+    } catch (error) {
+      console.log("error", error);
     }
   };
   useEffect(() => {
@@ -62,11 +72,10 @@ function Stack_p() {
 
   useEffect(() => {
     setInterval(() => {
-      getBoosterTime()
-    }, 30000)
-    getBoosterTime()
-
-  }, [acc])
+      getBoosterTime();
+    }, 30000);
+    getBoosterTime();
+  }, [acc]);
   return (
     <div className="main_stack_p_bg">
       <div className="container">
@@ -82,8 +91,12 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2 stack_part">Participants</h3>
-                      <p className="mt-3 text-white stack_p_responsive">{totalUsers}</p>
+                      <h3 className="stack_p_h3 mb-2 stack_part stack_responsive">
+                        Participants
+                      </h3>
+                      <p className="mt-3 text-white stack_p_responsive  stack_part1">
+                        {totalUsers}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -100,8 +113,10 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive mb-2">User Rank</h3>
-                      <p className="mt-3 text-white stack_p_responsive ">
+                      <h3 className="stack_p_h3 stack_responsive  stack_part mb-2">
+                        User Rank
+                      </h3>
+                      <p className="mt-3 text-white stack_p_responsive stack_part1">
                         {userRank ? userRank : "No Rank"}
                       </p>
                     </div>
@@ -115,10 +130,10 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive mb-2">
+                      <h3 className="stack_p_h3 stack_responsive stack_part2 mb-2">
                         Booster Remaining Time
                       </h3>
-                      <p className="stack_p stack_p_responsive">
+                      <p className="stack_p stack_p_responsive stack_part3">
                         {boosterTime}
                         {/* Platform Running Time: {depositTime} days */}
                       </p>
@@ -132,7 +147,7 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive mb-2">
+                      <h3 className="stack_p_h3 stack_responsive mb-2 stack_part4">
                         Cycle Reward Remaining Time
                       </h3>
                       <p className="stack_p stack_p_responsive">
