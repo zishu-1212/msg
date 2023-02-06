@@ -99,10 +99,10 @@ function Stack_level() {
                 <p className="s_l_p">Income:</p>
                 <p className=" aliment">{withdrawDetail?.all_val}</p>
               </div> */}
-              <div className="d-flex S_sss">
+              {/* <div className="d-flex S_sss">
                 <p className="s_l_p">BNB Balance:</p>
                 <p className=" aliment">{userAccountbalance}</p>
-              </div>
+              </div> */}
               <div className="d-flex S_sss">
                 <p className="s_l_p">USDT Balance:</p>
                 <p className=" aliment ">{usdtBalance} USDT</p>
