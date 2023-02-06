@@ -178,7 +178,7 @@ function Deposite_m(props) {
                   placeholder="50"
                 />
                 <p className="modal_pa">
-                  Minimum deposit 50 BUSD. A ratio of 50 max 2500
+                  Minimum deposit 50 USDT. A ratio of 50 max 2500
                 </p>
               </div>
               {/* { isOption && <div className='col-lg-4'>
