@@ -20,27 +20,30 @@ function Benifits() {
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8">
             <h5 className="text-white justify ms-3">
-              5 days will be Added ineachcycle
+              5 days will be Added in each cycle
             </h5>
             <br />
             <ul>
               <li className="text-white justify">
-                Everyone is qualifiedfor tier1income
+                Everyone is qualified for tier1income
               </li>
               <br />
               <li className="text-white justify">
-                All income will be Split intheratioof70% USDT &30%RIF A/c.
+                All income will be Split in the ratio of70% USDT & 30% RIF A/c.
               </li>
               <br />
               <li className="text-white justify">
-                After 3 X of your Tradepackagethesplit ratio will be
-                tochangeto70%RIF A/c & 30%USDT
+                After 3 X of your Trade package the split ratio will be
+                to change to 70% RIF A/c & 30% USDT
               </li>
               <br />
               <li className="text-white justify">
-                Split Fund transfer will beminmum50$ & in multiple of 50$• USBT
-                will launch its ownTokeninfuture as community growstodealwith
-                any deficit of USDTinSmartContract .
+                Split Fund transfer will be minmum 50$ & in multiple of 50$
+                
+              </li>
+              <li className="text-white justify">
+                USBT will launch its own Token in future as community grows to deal with
+                any deficit of USDT in Smart Contract .
               </li>
             </ul>
           </div>
