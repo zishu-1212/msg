@@ -25,7 +25,7 @@ function Footer() {
       <div className="container footer_copy">
         <div className="row justify-content-center py-4">
           <p className="footer_text">
-            USBT.SPACE SAMRT GAME © {new Date().getFullYear()} | All Rights
+            USBT.SPACE © {new Date().getFullYear()} | All Rights
             Reserved
           </p>
         </div>

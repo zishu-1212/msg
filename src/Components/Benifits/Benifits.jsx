@@ -19,25 +19,30 @@ function Benifits() {
       <div className="container">
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8">
-            <h5 className="text-white justify">
+            <h5 className="text-white justify ms-3">
               5 days will be Added ineachcycle
             </h5>
-
-            <p className="text-white justify">
-              1: Everyone is qualifiedfor tier1income
-            </p>
-            <p className="text-white justify">
-              2: All income will be Split intheratioof70% USDT &30%RIF A/c.
-            </p>
-            <p className="text-white justify">
-              3: After 3 X of your Tradepackagethesplit ratio will be
-              tochangeto70%RIF A/c & 30%USDT
-            </p>
-            <p className="text-white justify">
-              4: Split Fund transfer will beminmum50$ & in multiple of 50$• USBT
-              will launch its ownTokeninfuture as community growstodealwith any
-              deficit of USDTinSmartContract .
-            </p>
+            <br />
+            <ul>
+              <li className="text-white justify">
+                Everyone is qualifiedfor tier1income
+              </li>
+              <br />
+              <li className="text-white justify">
+                All income will be Split intheratioof70% USDT &30%RIF A/c.
+              </li>
+              <br />
+              <li className="text-white justify">
+                After 3 X of your Tradepackagethesplit ratio will be
+                tochangeto70%RIF A/c & 30%USDT
+              </li>
+              <br />
+              <li className="text-white justify">
+                Split Fund transfer will beminmum50$ & in multiple of 50$• USBT
+                will launch its ownTokeninfuture as community growstodealwith
+                any deficit of USDTinSmartContract .
+              </li>
+            </ul>
           </div>
           {/* <div className="col-lg-3">
             <div className="beni_img">

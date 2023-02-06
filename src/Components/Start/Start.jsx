@@ -11,7 +11,7 @@ function Start() {
         <div className="section-header--middle">
           <div className="header--middle__content">
             <div className="title_bar">
-              <h2 className="team_h2 text-white">ABOUT USBT.SPACE TOKEN</h2>
+              <h2 className="team_h2 text-white text-capitalize"> About USD Split & Bot Trade</h2>
             </div>
           </div>
         </div>
