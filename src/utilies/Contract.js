@@ -318,7 +318,7 @@ export const juttoTokenAbi = [
 ];
 
 export const financeAppContractAddress =
-  "0x48B9aF4D4cC004967D4a7ec98A86dee7353a3b66";
+  "0xd3064F71A86Fb6168270B70c00dFdE212e1C5928";
 
 export const financeAppContract_Abi = [
   {
