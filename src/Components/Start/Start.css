@@ -15,7 +15,7 @@
 .start_btn {
   padding-inline: 2rem;
   line-height: 56px;
-  font-size: 1.125rem;
+  font-size: 20px;
 
   border-radius: 5px;
 
@@ -39,4 +39,9 @@
   background: transparent !important;
   border-color: #00a79d !important;
   /* box-shadow: 0 0 10px rgb(40 219 209 / 40%); */
+}
+@media (max-width: 1024px) {
+  .start_btn {
+    font-size: 14px;
+  }
 }

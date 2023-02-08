@@ -28,7 +28,7 @@ function App() {
               element={<Latest_Deposit />}
             />
             {/* <Route exact path='/Dashboard/Reward_info' element={<Reward_info />} /> */}
-            {/* <Route exact path='/Dashboard/My_team' element={<My_team />} /> */}
+            <Route exact path="/Dashboard/My_team" element={<My_team />} />
             <Route
               exact
               path="/Dashboard/Deposit_details"

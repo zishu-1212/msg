@@ -10,12 +10,13 @@ import {
   financeAppContractAddress,
   financeAppContract_Abi,
 } from "../../utilies/Contract";
+import { toast } from "react-toastify";
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);
   let { userRank } = useSelector((state) => state.userRank);
   const [boosterTime, setBoosterTime] = useState(0);
-  const [rewardTime, setRewardTime] = useState(0);
+  const [rewardTime, setRewardTime] = useState("0");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getpoolDetail());
@@ -33,6 +34,7 @@ function Stack_p() {
   };
   const getBoosterTime = async () => {
     try {
+      console.log(acc, "acc");
       if (acc == "No Wallet") {
         console.log("No Wallet");
       } else if (acc == "Wrong Network") {
@@ -56,11 +58,44 @@ function Stack_p() {
           .getROI(acc, reward - 1)
           .call();
         setRewardTime(reward[0]);
-        if (booster < boostert) {
+        let boosterFlag = await financeAppcontractOf.methods
+          .boosterIncomeIsReady(acc)
+          .call();
+
+        if (booster <= boostert) {
           setBoosterTime(boostert - booster);
-        } else {
-          setBoosterTime(0);
+          let boosterMsg;
+          let boosterEndTime = boostert - booster;
+          if (boosterEndTime <= 0) {
+            if (boosterFlag[0]) {
+              boosterMsg = "Booster qualified";
+              setBoosterTime(boosterMsg);
+              console.log("boosterMsg", boosterMsg);
+            } else {
+              boosterMsg = "Booster is not qualified";
+              setBoosterTime(boosterMsg);
+            }
+          }
         }
+        //  else {
+        //   let boosterMsg;
+        //   let boosterEndTime = boostert - booster;
+        //   console.log("boosterendtime", boosterEndTime);
+        //   console.log("boostert", boostert);
+        //   if (boosterEndTime <= 0) {
+        //     if (boosterFlag[0]) {
+        //       boosterMsg = "Booster qualified";
+        //       console.log("boosterMsg", boosterMsg);
+        //       setBoosterTime(boosterMsg);
+        //     } else {
+        //       boosterMsg = "Booster is not qualified";
+        //       setBoosterTime(boosterMsg);
+        //       console.log("boosterMsg", boosterMsg);
+        //     }
+        //   }
+
+        //   // setBoosterTime(0);
+        // }
       }
     } catch (error) {
       console.log("error", error);
@@ -125,17 +160,19 @@ function Stack_p() {
                 <div className="col-lg-6 mt-3">
                   <div className="card inner_stack_p">
                     <div className="mt-3">
-                      {" "}
                       <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive stack_part2 mb-2">
+                      <h5 className="  stack_p_h3 stack_responsive stack_part2 ">
                         Booster Remaining Time
-                      </h3>
-                      <p className="stack_p stack_p_responsive stack_part3">
-                        {boosterTime}
-                        {/* Platform Running Time: {depositTime} days */}
+                      </h5>
+                      <p className="mt-3 text-white">
+                        {boosterTime && (
+                          <p className="stack_p stack_p_responsive stack_part3">
+                            {boosterTime}
+                          </p>
+                        )}
                       </p>
                     </div>
                   </div>

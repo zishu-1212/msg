@@ -19,20 +19,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { connectionAction } from "../../Redux/connection/actions";
 
 function Stacking_top() {
-  const[connectBtn, SetConnectBtn]=useState("");
-  const pathname= useLocation();
-  const changePath = () =>{
-    if(pathname?.pathname=="/"){
-      
+  const [connectBtn, SetConnectBtn] = useState("");
+  const pathname = useLocation();
+  const changePath = () => {
+    if (pathname?.pathname == "/") {
       SetConnectBtn(false);
+    } else {
+      SetConnectBtn(true);
     }
-    else{
-      SetConnectBtn(true)
-    }
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     changePath();
-  })
+  });
   const dispatch = useDispatch();
   let acc = useSelector((state) => state.connect?.connection);
   const [show, setShow] = useState(false);
@@ -55,7 +53,10 @@ function Stacking_top() {
                 <img src={LOGO1} className="stackig_top_logo" alt="" />
               </Link>
               <div className="both_dev">
-                <button className={`stack_btn_s ${connectBtn?"":"d-none"}`} onClick={onConnectAccount}>
+                <button
+                  className={`stack_btn_s ${connectBtn ? "" : "d-none"}`}
+                  onClick={onConnectAccount}
+                >
                   {" "}
                   {acc === "No Wallet"
                     ? "Connect"
@@ -93,12 +94,17 @@ function Stacking_top() {
                         <h3>Dashboard</h3>
                       </div>
                     </Link>
+                    <Link to="/Dashboard/My_team" onClick={handleClose}>
+                      <div className="lenkk">
+                        <IoPeople className="iicon" /> <h3>My Team</h3>
+                      </div>
+                    </Link>
                     <Link to="/Dashboard/Latest_Deposit" onClick={handleClose}>
                       <div className="lenkk">
                         <IoPeople className="iicon" /> <h3>Latest Deposit</h3>
                       </div>
                     </Link>
-                  
+
                     <Link to="/Dashboard/Deposit_details" onClick={handleClose}>
                       <div className="lenkk">
                         <TbMessageDots className="iicon" />{" "}
