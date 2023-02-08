@@ -18,7 +18,7 @@ export const withdrawInfo = (acc) => {
       let user_info = await financeAppcontractOf.methods.userInfo(acc).call();
       let roi = await financeAppcontractOf.methods.getROIRewards(acc).call();
       let all_val =
-        parseInt(web3.utils.fromWei(reward_info.statics)) +
+        // parseInt(web3.utils.fromWei(reward_info.roi)) +
         parseInt(web3.utils.fromWei(reward_info.directs)) +
         parseInt(web3.utils.fromWei(reward_info.diamond)) +
         parseInt(web3.utils.fromWei(reward_info.doubleDiamond)) +
@@ -31,9 +31,9 @@ export const withdrawInfo = (acc) => {
       obj["all_val"] = all_val;
       // obj['totalDeposit'] = Number(web3.utils.fromWei(user_info?.totalDeposit)).toFixed(2);
       // obj['top'] = Number(web3.utils.fromWei(reward_info?.top)).toFixed(2);
-      obj["statics"] = Number(web3.utils.fromWei(reward_info?.statics)).toFixed(
-        2
-      );
+      // obj["statics"] = Number(web3.utils.fromWei(reward_info?.roi)).toFixed(
+      //   2
+      // );
       obj["capitals"] = Number(
         web3.utils.fromWei(reward_info?.directs)
       ).toFixed(2);

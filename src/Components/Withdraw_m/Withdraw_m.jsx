@@ -161,7 +161,7 @@ function Withdraw_m(props) {
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">Cycle reward</p>
-                  <p className="witddraw_p">{withdrawDetail?.statics} USDT</p>
+                  <p className="witddraw_p">{withdrawDetail?.roi} USDT</p>
                 </div>
               </div>
             </div>

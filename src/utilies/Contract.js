@@ -797,7 +797,7 @@ export const financeAppContract_Abi = [
     inputs: [{ internalType: "address", name: "", type: "address" }],
     name: "rewardInfo",
     outputs: [
-      { internalType: "uint256", name: "statics", type: "uint256" },
+      { internalType: "uint256", name: "roi", type: "uint256" },
       { internalType: "uint256", name: "directs", type: "uint256" },
       { internalType: "uint256", name: "diamond", type: "uint256" },
       { internalType: "uint256", name: "doubleDiamond", type: "uint256" },
