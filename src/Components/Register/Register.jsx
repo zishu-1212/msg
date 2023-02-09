@@ -105,7 +105,7 @@ function Register(props, getAccount) {
         setRegisdterAdress(refer);
       }
     } catch (e) {
-      console.log("Erroe Whille Referral Fuction Call", e);
+      console.log("Error Whille Referral Fuction Call", e);
     }
   };
   useEffect(() => {

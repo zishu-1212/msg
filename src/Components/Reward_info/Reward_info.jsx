@@ -49,7 +49,7 @@ function Reward_info() {
         }
       }
     } catch (e) {
-      toast.error(e.message);
+      console.log("Transaction Failed");
     }
   };
   const getTopUser = async () => {

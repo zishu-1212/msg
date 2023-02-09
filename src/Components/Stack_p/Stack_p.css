@@ -67,9 +67,9 @@
   .stack_part1 {
     margin-left: 70px;
   }
-  /* .stack_part2 {
+  .stack_part2 {
     margin-left: 70px;
-  } */
+  }
   .stack_part3 {
     margin-left: 40px;
   }
@@ -83,5 +83,10 @@
   .stack_part3,
   .stack_part4 {
     margin-left: 0 !important;
+  }
+}
+@media (max-width: 428px) {
+  .stack_part2 {
+    margin-left: 18px;
   }
 }

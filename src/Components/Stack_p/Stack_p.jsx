@@ -50,18 +50,24 @@ function Stack_p() {
         let booster = await financeAppcontractOf.methods
           .getTimeDiffer(acc)
           .call();
+        console.log("booster", booster);
+
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
         let reward = await financeAppcontractOf.methods
           .getOrderLength(acc)
           .call();
+        console.log("reward", reward);
+
         reward = await financeAppcontractOf.methods
           .getROI(acc, reward - 1)
           .call();
+        console.log("reward", reward);
+
         setRewardTime(reward[0]);
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
-
+        console.log("boosterFlag", boosterFlag);
         if (booster <= boostert) {
           setBoosterTime(boostert - booster);
           let boosterMsg;

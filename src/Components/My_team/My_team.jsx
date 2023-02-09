@@ -11,7 +11,7 @@ import img1 from "./tm1.png";
 import img2 from "./tm2.png";
 import img3 from "./tm3.png";
 import img4 from "./tm4.png";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 function My_team() {
   let acc = useSelector((state) => state.connect?.connection);
   const [userinfos, setUserInfos] = useState("");
@@ -19,14 +19,14 @@ function My_team() {
   const [team, setTeamDeposite] = useState({});
 
   const getDetail = async () => {
-      try {
-        if (acc == "No Wallet") {
-					console.log("No Wallet");
-				  } else if (acc == "Wrong Network") {
-					console.log("Wrong Wallet");
-				  } else if (acc == "Connect Wallet") {
-					console.log("Connect Wallet");
-				  }else{
+    try {
+      if (acc == "No Wallet") {
+        console.log("No Wallet");
+      } else if (acc == "Wrong Network") {
+        console.log("Wrong Wallet");
+      } else if (acc == "Connect Wallet") {
+        console.log("Connect Wallet");
+      } else {
         let obj = {};
         const web3 = window.web3;
         let financeAppcontractOf = new web3.eth.Contract(
@@ -66,9 +66,9 @@ function My_team() {
 
         setUserInfos(obj);
       }
-      } catch (e) {
-        toast.error(e.message);
-      }
+    } catch (e) {
+      console.log("Transacton Failed");
+    }
   };
   useEffect(() => {
     getDetail();

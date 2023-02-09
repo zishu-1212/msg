@@ -163,7 +163,7 @@ function Split_m(props) {
         setgetsplit_Value(getCurSplit);
       }
     } catch (e) {
-      toast.error(e.message);
+      console.log("Transaction Failed");
     }
   };
 
