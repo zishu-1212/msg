@@ -53,38 +53,41 @@ function Stack_p() {
 
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
 
-        let reward = await financeAppcontractOf.methods
-          .getRemainingTime(acc)
+        const length = await financeAppcontractOf.methods
+          .getOrderLength(acc)
           .call();
 
-        setRewardTime(reward);
+        let reward = await financeAppcontractOf.methods
+          .getROI(acc, length - 1)
+          .call();
+        reward = reward[1] - reward[2];
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
-        if (booster <= boostert) {
+        setRewardTime(reward);
+
+        if (booster < boostert && length == 1) {
           setBoosterTime(boostert - booster);
-          let boosterMsg;
-          let boosterEndTime = boostert - booster;
-          if (boosterEndTime <= 0) {
-            if (boosterFlag[0]) {
-              boosterMsg = "Booster qualified";
-              setBoosterTime(boosterMsg);
-            } else {
-              boosterMsg = "Booster is not qualified";
-              setBoosterTime(boosterMsg);
-            }
-          }
+
+          // let boosterMsg;
+          // let boosterEndTime = boostert - booster;
+          // if (boosterEndTime <= 0) {
+          //   if (boosterFlag[0]) {
+          //     boosterMsg = "Booster qualified";
+          //     setBoosterTime(boosterMsg);
+          //   } else {
+          //     boosterMsg = "Booster is not qualified";
+          //     setBoosterTime(boosterMsg);
+          //   }
+          // }
         } else {
           let boosterMsg;
-          let boosterEndTime = boostert - booster;
-          if (boosterEndTime <= 0) {
-            if (boosterFlag[0]) {
-              boosterMsg = "Booster qualified";
-              setBoosterTime(boosterMsg);
-            } else {
-              boosterMsg = "Booster is not qualified";
-              setBoosterTime(boosterMsg);
-            }
+          if (boosterFlag[0]) {
+            boosterMsg = "Booster qualified";
+            setBoosterTime(boosterMsg);
+          } else {
+            boosterMsg = "Booster is not qualified";
+            setBoosterTime(boosterMsg);
           }
         }
       }
@@ -94,14 +97,17 @@ function Stack_p() {
   };
   useEffect(() => {
     getRank();
+    getBoosterTime();
   }, [acc]);
 
   useEffect(() => {
     setInterval(() => {
       getBoosterTime();
     }, 30000);
-    getBoosterTime();
   }, [acc]);
+  // useEffect(() => {
+  //   getBoosterTime();
+  // }, [acc]);
   return (
     <div className="main_stack_p_bg">
       <div className="container">
@@ -158,7 +164,9 @@ function Stack_p() {
                       </h3>
                       <p className="mt-3 text-white text-center stack_part1">
                         {boosterTime && (
-                          <p className="stack_p stack_part1">{boosterTime}</p>
+                          <span className="stack_p stack_part1">
+                            {boosterTime}
+                          </span>
                         )}
                       </p>
                     </div>
