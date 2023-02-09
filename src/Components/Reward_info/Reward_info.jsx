@@ -33,7 +33,7 @@ function Reward_info() {
           financeAppContractAddress
         );
         let { level } = await financeAppcontractOf.methods.userInfo(acc).call();
-        console.log("level", level);
+    
         if (level == 0) {
           setReward("");
         } else if (level == 1) {

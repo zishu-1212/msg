@@ -47,7 +47,6 @@ function Stack_re() {
       financeAppContractAddress
     );
     let startTime = await financeAppcontractOf.methods.lastDistribute().call();
-    // console.log("startTime",startTime);
 
     let timer_get = startTime;
 
@@ -105,7 +104,6 @@ function Stack_re() {
       .UserFee(acc)
       .call();
     setuserfee_Amount(web3.utils.fromWei(startTime_for_claimGassFee?.amount));
-    // console.log('startTime_for_claimGassFee', startTime_for_claimGassFee.time)
 
     if (startTime_for_claimGassFee?.amount > 0) {
       setIsDisable(false);

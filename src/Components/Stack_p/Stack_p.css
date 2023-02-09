@@ -13,20 +13,20 @@
   display: flex;
   padding: 15px;
   flex-direction: row !important;
-  /* align-items: center; */
   gap: 50px;
 }
 
 .stack_p_h3 {
   font-size: 16px;
-  line-height: 0.2rem;
+  /* line-height: 0.2rem; */
   color: white;
+  text-align: center !important;
 }
 
 .icon_color {
   color: #22616a !important;
 }
-.stack_part1 {
+/* .stack_part1 {
   margin-left: 55px;
 }
 .stack_part {
@@ -37,8 +37,8 @@
 }
 .stack_part3 {
   margin-left: 20px;
-}
-@media (max-width: 1024px) {
+} */
+/* @media (max-width: 1024px) {
   .inner_stack_p {
     gap: 0 !important;
   }
@@ -100,3 +100,8 @@
     margin-left: 10px !important;
   }
 }
+@media (max-width: 360px) {
+  .stack_part2 {
+    margin-left: 35px;
+  }
+} */

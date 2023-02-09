@@ -50,13 +50,8 @@ function Stack_p() {
         let booster = await financeAppcontractOf.methods
           .getTimeDiffer(acc)
           .call();
-        console.log("booster", booster);
 
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
-        // let reward = await financeAppcontractOf.methods
-        //   .getOrderLength(acc)
-        //   .call();
-        // console.log("reward", reward);
 
         let reward = await financeAppcontractOf.methods
           .getRemainingTime(acc)
@@ -66,18 +61,14 @@ function Stack_p() {
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
-        console.log("booster", booster, boostert);
-        console.log("boosterFlag", boosterFlag, booster <= boostert);
         if (booster <= boostert) {
           setBoosterTime(boostert - booster);
           let boosterMsg;
           let boosterEndTime = boostert - booster;
-          console.log("boosterEndTime", boosterEndTime);
           if (boosterEndTime <= 0) {
             if (boosterFlag[0]) {
               boosterMsg = "Booster qualified";
               setBoosterTime(boosterMsg);
-              console.log("boosterMsg", boosterMsg);
             } else {
               boosterMsg = "Booster is not qualified";
               setBoosterTime(boosterMsg);
@@ -90,32 +81,12 @@ function Stack_p() {
             if (boosterFlag[0]) {
               boosterMsg = "Booster qualified";
               setBoosterTime(boosterMsg);
-              console.log("boosterMsg", boosterMsg);
             } else {
               boosterMsg = "Booster is not qualified";
               setBoosterTime(boosterMsg);
             }
           }
         }
-        //  else {
-        //   let boosterMsg;
-        //   let boosterEndTime = boostert - booster;
-        //   console.log("boosterendtime", boosterEndTime);
-        //   console.log("boostert", boostert);
-        //   if (boosterEndTime <= 0) {
-        //     if (boosterFlag[0]) {
-        //       boosterMsg = "Booster qualified";
-        //       console.log("boosterMsg", boosterMsg);
-        //       setBoosterTime(boosterMsg);
-        //     } else {
-        //       boosterMsg = "Booster is not qualified";
-        //       setBoosterTime(boosterMsg);
-        //       console.log("boosterMsg", boosterMsg);
-        //     }
-        //   }
-
-        //   // setBoosterTime(0);
-        // }
       }
     } catch (error) {
       console.log("error", error);
@@ -146,10 +117,10 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 mb-2 stack_part stack_responsive">
+                      <h3 className="stack_p_h3 mb-2 stack_part ">
                         Participants
                       </h3>
-                      <p className="mt-3 text-white stack_p_responsive  stack_part1">
+                      <p className="mt-3 text-white  stack_part1">
                         {totalUsers}
                       </p>
                     </div>
@@ -168,10 +139,8 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive  stack_part mb-2">
-                        User Rank
-                      </h3>
-                      <p className="mt-3 text-white stack_p_responsive stack_part1">
+                      <h3 className="stack_p_h3  stack_part mb-2">User Rank</h3>
+                      <p className="mt-3 text-white  stack_part1">
                         {userRank ? userRank : "No Rank"}
                       </p>
                     </div>
@@ -184,14 +153,12 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h5 className="  stack_p_h3 stack_responsive stack_part2 ">
-                        Booster Remaining Time
-                      </h5>
-                      <p className="mt-3 text-white">
+                      <h3 className="  stack_p_h3  stack_part ">
+                        Booster Time
+                      </h3>
+                      <p className="mt-3 text-white text-center stack_part1">
                         {boosterTime && (
-                          <p className="stack_p stack_p_responsive stack_part3">
-                            {boosterTime}
-                          </p>
+                          <p className="stack_p stack_part1">{boosterTime}</p>
                         )}
                       </p>
                     </div>
@@ -204,16 +171,32 @@ function Stack_p() {
                     </div>
 
                     <div className="mt-3">
-                      <h3 className="stack_p_h3 stack_responsive mb-2 stack_part4">
-                        Cycle Reward Remaining Time
+                      <h3 className="stack_p_h3  stack_part mb-2">
+                        Cycle Time
                       </h3>
-                      <p className="stack_p stack_p_responsive">
+                      <p className="mt-3 text-white  stack_part1">
                         {rewardTime}
-                        {/* Platform Running Time: {depositTime} days */}
                       </p>
                     </div>
                   </div>
                 </div>
+                {/* <div className="col-lg-6 mt-3">
+                  <div className="card inner_stack_p">
+                    <div className="mt-3">
+                      <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
+                    </div>
+
+                    <div className="mt-3">
+                      <h3 className="stack_p_h3 mb-2 stack_part">
+                        Cycle Time
+                      </h3>
+                      <p className="stack_p stack_p_responsive stack_part1">
+                        {rewardTime}
+                     
+                      </p>
+                    </div>
+                  </div>
+                </div> */}
               </div>
               {/* <div className="row mt-4">
                 <div className="col-lg-6 mt-3">

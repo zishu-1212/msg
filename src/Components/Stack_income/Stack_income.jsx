@@ -67,7 +67,6 @@ function Stack_income() {
         var currentDateTime = new Date();
         let resultInSeconds = currentDateTime.getTime() / 1000;
 
-        // console.log("Time_here",parseInt(FinalTime) );
         let Time_here = FinalTime - parseInt(resultInSeconds);
         let TimeFinal = parseInt(Time_here);
         if (TimeFinal > 0) {

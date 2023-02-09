@@ -71,13 +71,13 @@ const RepetationComponent = () => {
   const getDeposit_time = async () => {
     try {
       if (acc == "No Wallet") {
-        console.log(acc);
+        
         dispatch(getRemaintime(acc));
       } else if (acc == "Wrong Network") {
-        console.log(acc);
+       
         dispatch(getRemaintime(acc));
       } else if (acc == "Connect Wallet") {
-        console.log(acc);
+        
         dispatch(getRemaintime(acc));
       } else {
         dispatch(getRemaintime(acc));
