@@ -85,8 +85,8 @@
     margin-left: 0 !important;
   }
 }
-@media (max-width: 428px) {
+@media (max-width: 320px) {
   .stack_part2 {
-    margin-left: 18px;
+    margin-left: 18px !important;
   }
 }
