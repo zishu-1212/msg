@@ -53,23 +53,37 @@ function Stack_p() {
         console.log("booster", booster);
 
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
+        // let reward = await financeAppcontractOf.methods
+        //   .getOrderLength(acc)
+        //   .call();
+        // console.log("reward", reward);
+
         let reward = await financeAppcontractOf.methods
-          .getOrderLength(acc)
+          .getRemainingTime(acc)
           .call();
-        console.log("reward", reward);
 
-        reward = await financeAppcontractOf.methods
-          .getROI(acc, reward - 1)
-          .call();
-        console.log("reward", reward);
-
-        setRewardTime(reward[0]);
+        setRewardTime(reward);
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
-        console.log("boosterFlag", boosterFlag);
+        console.log("booster", booster, boostert);
+        console.log("boosterFlag", boosterFlag, booster <= boostert);
         if (booster <= boostert) {
           setBoosterTime(boostert - booster);
+          let boosterMsg;
+          let boosterEndTime = boostert - booster;
+          console.log("boosterEndTime", boosterEndTime);
+          if (boosterEndTime <= 0) {
+            if (boosterFlag[0]) {
+              boosterMsg = "Booster qualified";
+              setBoosterTime(boosterMsg);
+              console.log("boosterMsg", boosterMsg);
+            } else {
+              boosterMsg = "Booster is not qualified";
+              setBoosterTime(boosterMsg);
+            }
+          }
+        } else {
           let boosterMsg;
           let boosterEndTime = boostert - booster;
           if (boosterEndTime <= 0) {

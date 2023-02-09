@@ -90,3 +90,13 @@
     margin-left: 18px !important;
   }
 }
+@media (max-width: 319px) {
+  .stack_part2 {
+    margin-left: 15px !important;
+  }
+}
+@media (max-width: 316px) {
+  .stack_part2 {
+    margin-left: 10px !important;
+  }
+}

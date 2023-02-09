@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0c01a26.css",
-    "main.js": "/static/js/main.0867368b.js",
+    "main.css": "/static/css/main.c00b3fdc.css",
+    "main.js": "/static/js/main.9c9d8160.js",
     "static/js/787.72f98075.chunk.js": "/static/js/787.72f98075.chunk.js",
     "static/media/jutto_token.pdf": "/static/media/jutto_token.a9fdfe5dd802d61a6ae6.pdf",
     "static/media/wyzth.pdf": "/static/media/wyzth.9936597bd40bc27ca7e0.pdf",
@@ -19,12 +19,12 @@
     "static/media/icons.png": "/static/media/icons.1ff2701e34029d66f832.png",
     "static/media/header.svg": "/static/media/header.03a19a3c15d346b4adfd.svg",
     "index.html": "/index.html",
-    "main.a0c01a26.css.map": "/static/css/main.a0c01a26.css.map",
-    "main.0867368b.js.map": "/static/js/main.0867368b.js.map",
+    "main.c00b3fdc.css.map": "/static/css/main.c00b3fdc.css.map",
+    "main.9c9d8160.js.map": "/static/js/main.9c9d8160.js.map",
     "787.72f98075.chunk.js.map": "/static/js/787.72f98075.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0c01a26.css",
-    "static/js/main.0867368b.js"
+    "static/css/main.c00b3fdc.css",
+    "static/js/main.9c9d8160.js"
   ]
 }

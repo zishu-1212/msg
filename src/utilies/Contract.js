@@ -318,7 +318,7 @@ export const juttoTokenAbi = [
 ];
 
 export const financeAppContractAddress =
-  "0x68DE7120250Eb6e7AcC5D1f7d9827063Dc03307e";
+  "0xe8a2B717F377C71F25798802E4C6ddFC8B8E6c68";
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
@@ -661,7 +661,6 @@ export const financeAppContract_Abi = [
       { internalType: "uint256", name: "", type: "uint256" },
       { internalType: "uint256", name: "", type: "uint256" },
       { internalType: "uint256", name: "", type: "uint256" },
-      { internalType: "uint256", name: "", type: "uint256" },
     ],
     stateMutability: "view",
     type: "function",
@@ -669,6 +668,13 @@ export const financeAppContract_Abi = [
   {
     inputs: [{ internalType: "address", name: "_user", type: "address" }],
     name: "getROIRewards",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_user", type: "address" }],
+    name: "getRemainingTime",
     outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
@@ -797,7 +803,7 @@ export const financeAppContract_Abi = [
     inputs: [{ internalType: "address", name: "", type: "address" }],
     name: "rewardInfo",
     outputs: [
-      { internalType: "uint256", name: "roi", type: "uint256" },
+      { internalType: "uint256", name: "statics", type: "uint256" },
       { internalType: "uint256", name: "directs", type: "uint256" },
       { internalType: "uint256", name: "diamond", type: "uint256" },
       { internalType: "uint256", name: "doubleDiamond", type: "uint256" },
