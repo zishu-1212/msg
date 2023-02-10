@@ -64,12 +64,13 @@ function Stack_p() {
           reward = reward[1] - reward[2];
         } else {
           reward = "Cycles are completed";
+         
         }
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
         setRewardTime(reward);
-        console.log("cycle time", reward);
+  
 
         if (booster < boostert && length == 1) {
           setBoosterTime(boostert - booster);
