@@ -60,26 +60,31 @@ function Stack_p() {
         let reward = await financeAppcontractOf.methods
           .getROI(acc, length - 1)
           .call();
-        reward = reward[1] - reward[2];
+        if (reward[2] <= 50) {
+          reward = reward[1] - reward[2];
+        } else {
+          reward = "Cycles are completed";
+        }
         let boosterFlag = await financeAppcontractOf.methods
           .boosterIncomeIsReady(acc)
           .call();
         setRewardTime(reward);
+        console.log("cycle time", reward);
 
         if (booster < boostert && length == 1) {
           setBoosterTime(boostert - booster);
 
-          // let boosterMsg;
-          // let boosterEndTime = boostert - booster;
-          // if (boosterEndTime <= 0) {
-          //   if (boosterFlag[0]) {
-          //     boosterMsg = "Booster qualified";
-          //     setBoosterTime(boosterMsg);
-          //   } else {
-          //     boosterMsg = "Booster is not qualified";
-          //     setBoosterTime(boosterMsg);
-          //   }
-          // }
+          let boosterMsg;
+          let boosterEndTime = boostert - booster;
+          if (boosterEndTime <= 0) {
+            if (boosterFlag[0]) {
+              boosterMsg = "Booster qualified";
+              setBoosterTime(boosterMsg);
+            } else {
+              boosterMsg = "Booster is not qualified";
+              setBoosterTime(boosterMsg);
+            }
+          }
         } else {
           let boosterMsg;
           if (boosterFlag[0]) {
