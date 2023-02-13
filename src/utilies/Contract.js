@@ -317,7 +317,7 @@ export const juttoTokenAbi = [
   },
 ]
 
-export const financeAppContractAddress = '0x4fFb9B9FCeF025f6Bf7fE0cF8a52306a75248765'
+export const financeAppContractAddress = '0x69113Df45149A121637ee30b2d26638C09E5519D'
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
