@@ -1,5 +1,5 @@
 .modal_bg {
-  background-color: #1e3e42 !important;
+  background-color: #0a1f2f !important;
   border-bottom: none !important;
 }
 
@@ -12,7 +12,7 @@
 .input_modal {
   width: 100%;
   padding: 10px 10px 10px 20px;
-  background-color: #1e3e42 !important;
+  background-color: #0a1f2f !important;
 
   color: white !important;
   border-radius: 10px !important;
@@ -57,7 +57,7 @@
 }
 
 .body_m_bg {
-  background-color: #1e3e42 !important;
+  background-color: #0a1f2f !important;
 }
 
 .sub_para {
@@ -89,7 +89,7 @@
 }
 
 .footer_m_bg {
-  background-color: #1e3e42 !important;
+  background-color: #0a1f2f !important;
   margin-top: none !important;
   border-top: none !important;
 }

@@ -82,7 +82,7 @@ function Deposit_details() {
               )}
             </div>
             <div>
-              <span>Directs</span>
+              <span>500 USD Directs</span>
               <br />
               <span>{directs["1"]}</span>
             </div>
