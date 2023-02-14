@@ -317,7 +317,8 @@ export const juttoTokenAbi = [
   },
 ]
 
-export const financeAppContractAddress = '0x69113Df45149A121637ee30b2d26638C09E5519D'
+export const financeAppContractAddress =
+  '0xb0Db1F7B30386606dC8f21c3Fedb742706cE1809'
 
 export const financeAppContract_Abi = [
   { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
@@ -525,21 +526,21 @@ export const financeAppContract_Abi = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    inputs: [],
     name: 'dailyDeposit',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    inputs: [],
     name: 'dailyDiamond',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    inputs: [],
     name: 'dailyDoubleDiamond',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
@@ -605,6 +606,13 @@ export const financeAppContract_Abi = [
     name: 'directUsers',
     outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'distributePoolRewards',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
@@ -697,6 +705,34 @@ export const financeAppContract_Abi = [
     name: 'getTimeDiffer',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getinDierect',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getinhere',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'bool', name: 'set', type: 'bool' }],
+    name: 'getinhere2',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getmoney',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
   {
