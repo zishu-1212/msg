@@ -14,8 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRemaintime } from "../../Redux/remaintime/action";
 import Countdown from "react-countdown";
 import Web3 from "web3";
-// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://data-seed-prebsc-2-s3.binance.org:8545/");
+const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
 
 const RepetationComponent = () => {
   let acc = useSelector((state) => state.connect?.connection);
@@ -106,7 +105,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust">
                     Contract address:{" "}
                     <a
-                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -116,7 +115,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust2">
                     Contract address:{" "}
                     <a
-                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >

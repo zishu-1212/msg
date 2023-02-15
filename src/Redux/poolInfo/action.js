@@ -4,8 +4,7 @@ import {
   financeAppContract_Abi,
 } from "../../utilies/Contract";
 import Web3 from "web3";
-// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://data-seed-prebsc-2-s3.binance.org:8545/");
+const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
 
 export const getpoolDetail = () => {
   return async (dispatch) => {

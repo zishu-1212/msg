@@ -12,8 +12,7 @@ import Web3 from "web3";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
-// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/");
-const web3Supply = new Web3("https://data-seed-prebsc-2-s3.binance.org:8545/");
+const web3Supply = new Web3("https://bsc-dataseed1.binance.org/");
 
 function Register(props, getAccount) {
   let acc = useSelector((state) => state.connect?.connection);
@@ -101,8 +100,9 @@ function Register(props, getAccount) {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        let refer = await contract.methods.defaultRefer().call();
-        setRegisdterAdress(refer);
+        const refAddress = await contract.methods.defaultRefer().call();
+        console.log("refAddress",refAddress)
+        setRegisdterAdress(refAddress);
       }
     } catch (e) {
       console.log("Error Whille Referral Fuction Call", e);

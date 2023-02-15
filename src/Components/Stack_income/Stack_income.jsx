@@ -124,7 +124,7 @@ function Stack_income() {
                   <p className="stack_p width_adjust">
                     Contract address:{" "}
                     <a
-                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -134,7 +134,7 @@ function Stack_income() {
                   <p className="stack_p width_adjust2">
                     Contract address:{" "}
                     <a
-                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >

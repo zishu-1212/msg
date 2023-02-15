@@ -9,8 +9,7 @@ import RepetationComponent from "../My_team/RepetationComponent";
 import "./Reward_info.css";
 import { useSelector } from "react-redux";
 import Web3 from "web3";
-// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://data-seed-prebsc-2-s3.binance.org:8545/");
+const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
 
 function Reward_info() {
   let acc = useSelector((state) => state.connect?.connection);

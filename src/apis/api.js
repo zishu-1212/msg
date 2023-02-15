@@ -1,6 +1,5 @@
 import Web3 from "web3";
 let isItConnected = false;
-// const chainId = 137 // Polygon Mainnet
 const networks = {
   bsc: {
     chainId: `0x${Number(56).toString(16)}`,
@@ -56,14 +55,10 @@ export const loadWeb3 = async () => {
       window.web3 = new Web3(window.ethereum);
       await window.ethereum.enable();
       await window.web3.eth.getChainId((err, netId) => {
-        // console.log("networkId==>", netId);
         switch (netId.toString()) {
-          case "97":
+          case "56":
             isItConnected = true;
             break;
-          // case "137":
-          //   isItConnected = true;
-          //   break;
           default:
             handleNetworkSwitch("bsc");
             isItConnected = false;
