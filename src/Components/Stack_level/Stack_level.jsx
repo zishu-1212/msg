@@ -32,14 +32,14 @@ function Stack_level() {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        // let financeAppTokenOf = new web3.eth.Contract(
-        //   juttoTokenAbi,
-        //   juttoTokenAddress
-        // );
+        let financeAppTokenOf = new web3.eth.Contract(
+          juttoTokenAbi,
+          juttoTokenAddress
+        );
 
-        // let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
-        // let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
-        // setUsdtBalance(usdtamount);
+        let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
+        let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
+        setUsdtBalance(usdtamount);
 
         let userinfo = await financeAppcontractOf.methods.userInfo(acc).call();
         setMyLevel(userinfo.level);
@@ -52,7 +52,6 @@ function Stack_level() {
           setrefrealLink(userinfo.referrer);
           let spit = window.location.href.split("=");
           let add = `${spit[0]}=${userinfo.referrer}`;
-          console.log("add", add);
           setrefrealLink(add);
         }
       }

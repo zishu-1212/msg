@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { ColorRing } from "react-loader-spinner";
 // const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://data-seed-prebsc-1-s3.binance.org:8545/")
+const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
 
 function Latest_Deposit() {
   const [orderInfos, setOrderInfo] = useState("");
