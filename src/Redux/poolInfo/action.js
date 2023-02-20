@@ -13,7 +13,7 @@ export const getpoolDetail = () => {
         financeAppContract_Abi,
         financeAppContractAddress
       );
-      let totalUsers = await financeAppcontractOf.methods.totalUser().call();
+      let totalUsers = await financeAppcontractOf.methods.getDepositorsLength().call();
       dispatch({ type: ActionTypes.POOL_DETAIL, payload: totalUsers });
     } catch (e) {
       console.error(e);

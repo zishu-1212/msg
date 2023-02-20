@@ -52,10 +52,38 @@ function Stack_p() {
           .call();
 
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
-
         const length = await financeAppcontractOf.methods
-          .getOrderLength(acc)
+        .getOrderLength(acc)
+        .call();
+        // let boosterFlag = false;
+ let boosterFlag = await financeAppcontractOf.methods
+          .getBoosterTeamDeposit(acc)
           .call();
+        if (booster < boostert && length >= 1) {
+          setBoosterTime(boostert - booster);
+
+          let boosterMsg;
+          let boosterEndTime = boostert - booster;
+          if (boosterEndTime <= 0) {
+            if (boosterFlag) {
+              boosterMsg = "Booster Qualified";
+              setBoosterTime(boosterMsg);
+            } else {
+              boosterMsg = "Booster not Qualified";
+              setBoosterTime(boosterMsg);
+            }
+          }
+        } else {
+          let boosterMsg;
+          if (boosterFlag) {
+            boosterMsg = "Booster Qualified";
+            setBoosterTime(boosterMsg);
+          } else {
+            boosterMsg = "Booster not Qualified";
+            setBoosterTime(boosterMsg);
+          }
+        }
+      
 
         let reward = await financeAppcontractOf.methods
           .getROI(acc, length - 1)
@@ -66,36 +94,9 @@ function Stack_p() {
           reward = "Cycles are completed";
          
         }
-        let boosterFlag = await financeAppcontractOf.methods
-          .boosterIncomeIsReady(acc)
-          .call();
+       
         setRewardTime(reward);
-  
-
-        if (booster < boostert && length == 1) {
-          setBoosterTime(boostert - booster);
-
-          let boosterMsg;
-          let boosterEndTime = boostert - booster;
-          if (boosterEndTime <= 0) {
-            if (boosterFlag[0]) {
-              boosterMsg = "Booster qualified";
-              setBoosterTime(boosterMsg);
-            } else {
-              boosterMsg = "Booster is not qualified";
-              setBoosterTime(boosterMsg);
-            }
-          }
-        } else {
-          let boosterMsg;
-          if (boosterFlag[0]) {
-            boosterMsg = "Booster qualified";
-            setBoosterTime(boosterMsg);
-          } else {
-            boosterMsg = "Booster is not qualified";
-            setBoosterTime(boosterMsg);
-          }
-        }
+       
       }
     } catch (error) {
       console.log("error", error);

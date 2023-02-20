@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LOGO1 from "../Assets/LOGO2.png";
 import "./Stacking_top.css";
 import { Link, Outlet, Route, Routes, useLocation } from "react-router-dom";
-import jutto_token from "../Assets/jutto_token.pdf";
+import jutto_token from "../Assets/usbt.pdf";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiMenu } from "react-icons/bi";
 import { MdOutlineDashboardCustomize } from "react-icons/md";

@@ -117,7 +117,7 @@ function Latest_Deposit() {
                 rewardInfo.slice(0, 10).map((item, index) => {
                   return (
                     <div className="first_line">
-                      <span className="spn ">{`${index + 1}).`}</span>
+                      <span className="spn ">{`${index + 1})`}</span>
                       <span className="inlarge">{item.address}</span>
                       <span
                         className="inResponse"
@@ -141,7 +141,7 @@ function Latest_Deposit() {
                           alt=""
                           width="15%"
                         />
-                        &nbsp;&nbsp; &nbsp; {item.amount} &nbsp;BUSD
+                        &nbsp;&nbsp; &nbsp; {item.amount} &nbsp;USDT
                       </div>
                     </div>
                   );

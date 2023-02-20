@@ -51,58 +51,66 @@ function Deposite_m(props) {
           financeAppContractAddress
         );
         const token = new web3.eth.Contract(juttoTokenAbi, juttoTokenAddress);
-        if (
-          parseInt(depositandintrest) >= 50 &&
-          parseInt(depositandintrest) <= 2500
-        ) {
-          if (parseInt(depositandintrest) % 50 == 0) {
-            const { maxDeposit, referrer } = await contract.methods
-              .userInfo(acc)
-              .call();
-
-            let value;
-            let approveAmount = web3.utils.toWei(depositandintrest);
-            let userTokenBalance = await checkBalance();
-
-            // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
-            if (
-              parseFloat(approveAmount) >=
-              parseFloat(web3.utils.fromWei(maxDeposit))
-            ) {
-              if (referrer == "0x0000000000000000000000000000000000000000") {
-                toast.error("please Register Account 1st");
-              } else {
-                setloader(true);
-
-                await token.methods
-                  .approve(financeAppContractAddress, approveAmount)
-                  .send({
+        let {totalDeposit}=await contract.methods.userInfo(acc).call()
+        totalDeposit=web3.utils.fromWei(totalDeposit)
+        if((2500-totalDeposit)>0){
+          if (
+            parseInt(depositandintrest) >= 50 &&
+            parseInt(depositandintrest) <= 2500
+          ) {
+            if (parseInt(depositandintrest) % 50 == 0) {
+              const { maxDeposit, referrer } = await contract.methods
+                .userInfo(acc)
+                .call();
+  
+              let value;
+              let approveAmount = web3.utils.toWei(depositandintrest);
+              let userTokenBalance = await checkBalance();
+  
+              // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
+              if (
+                parseFloat(approveAmount) >=
+                parseFloat(web3.utils.fromWei(maxDeposit))
+              ) {
+                if (referrer == "0x0000000000000000000000000000000000000000") {
+                  toast.error("please Register Account 1st");
+                } else {
+                  setloader(true);
+  
+                  await token.methods
+                    .approve(financeAppContractAddress, approveAmount)
+                    .send({
+                      from: acc,
+                    });
+                  await contract.methods.deposit(approveAmount).send({
                     from: acc,
                   });
-                await contract.methods.deposit(approveAmount).send({
-                  from: acc,
-                });
-
-                checkFirstTime();
-                dispatch(getRemaintime());
-                dispatch(getpoolDetail());
-                dispatch(getUserRank(acc));
-                dispatch(withdrawInfo(acc));
-                props.onHide();
-                toast.success("Amount Deposited successfully");
-                setloader(false);
+  
+                  checkFirstTime();
+                  dispatch(getRemaintime());
+                  dispatch(getpoolDetail());
+                  dispatch(getUserRank(acc));
+                  dispatch(withdrawInfo(acc));
+                  props.onHide();
+                  toast.success("Amount Deposited successfully");
+                  setloader(false);
+                }
+              } else {
+                toast.info(
+                  `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
+                );
               }
             } else {
-              toast.info(
-                `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
-              );
+              toast.info("Please enter value in multiple of 50");
             }
           } else {
-            toast.info("Please enter value in multiple of 50");
+            toast.info("value must be greater then 50 and less then 2500 ");
           }
-        } else {
-          toast.info("value must be greater then 50 and less then 2500 ");
         }
+        else{
+          toast.info("Remaing deposit limit reached")
+        }
+       
       }
     } catch (error) {
       setloader(false);
@@ -112,6 +120,7 @@ function Deposite_m(props) {
 
   const checkFirstTime = async () => {
     try {
+      console.log("acc",acc);
       if (
         acc != "No Wallet" &&
         acc != "Wrong Network" &&

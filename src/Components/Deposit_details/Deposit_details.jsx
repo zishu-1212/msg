@@ -46,7 +46,7 @@ function Deposit_details() {
           setOrderAmount(amount);
           setFlag(true);
         } else {
-          toast.info("please deposit 1st");
+          toast.info("Deposit 1st");
         }
       }
     } catch (e) {

@@ -15,10 +15,7 @@ function Stack_level() {
   let acc = useSelector((state) => state.connect?.connection);
   const [refrealAdress, setrefrealAdress] = useState("");
   const [usdtBalance, setUsdtBalance] = useState(0);
-  const [trxBalance, setTrxBalance] = useState("");
   const [myLevel, setMyLevel] = useState("");
-  const [userIncome, setUserIncome] = useState("");
-  const [userAccountbalance, setUserAccountBalance] = useState("");
   const [copyTest, setcopyTest] = useState(false);
   const getDetail = async () => {
     try {
@@ -41,27 +38,12 @@ function Stack_level() {
 
         let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
         let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
-
         setUsdtBalance(usdtamount);
-
         let userinfo = await financeAppcontractOf.methods.userInfo(acc).call();
-
         setMyLevel(userinfo.level);
-        // let userincome = web3.utils.fromWei(userinfo.totalRevenue);
-        // userincome = parseFloat(userincome).toFixed(2);
-
-        // setUserIncome(userincome);
-
-        let balance = new web3.eth.getBalance(acc).then((response) => {
-          let userBalance = web3.utils.fromWei(response);
-
-          userBalance = Number(userBalance).toFixed(2);
-          setUserAccountBalance(userBalance);
-        });
         setrefrealAdress(userinfo.referrer);
       }
     } catch (e) {
-      // toast.error(e.message);
       console.log(e.message);
     }
   };
@@ -82,27 +64,7 @@ function Stack_level() {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="card stack_inner_card">
-              {/* <div className="stack_level_content">
-                                <h6 className='stack_level_h6'><Rating
-                                    style={{ color: "#ffbf00" }}
-                                    initialRating={myLevel}
-                                    emptySymbol={<AiOutlineStar />}
-                                    fullSymbol={<AiFillStar className='star_color' />}
-                                    start={0}
-                                    stop={5}
-                                    readonly
 
-                                /></h6>
-
-                            </div> */}
-              {/* <div className="d-flex S_sss">
-                <p className="s_l_p">Income:</p>
-                <p className=" aliment">{withdrawDetail?.all_val}</p>
-              </div> */}
-              {/* <div className="d-flex S_sss">
-                <p className="s_l_p">BNB Balance:</p>
-                <p className=" aliment">{userAccountbalance}</p>
-              </div> */}
               <div className="d-flex S_sss">
                 <p className="s_l_p">USDT Balance:</p>
                 <p className=" aliment ">{usdtBalance} USDT</p>
@@ -125,8 +87,8 @@ function Stack_level() {
                     text={
                       refrealAdress ==
                       "0x0000000000000000000000000000000000000000"
-                        ? `${window.location.href}`
-                        : `${window.location.href}?referrallink=${acc}`
+                        ? `${window.location.href} `
+                        : `${window.location.href}?referrallink=${refrealAdress}`
                     }
                   >
                     <AiOutlineCopy className="text-white fs-4" />
