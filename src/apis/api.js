@@ -2,14 +2,16 @@ import Web3 from "web3";
 let isItConnected = false;
 const networks = {
   bsc: {
-    chainId: `0x${Number(56).toString(16)}`,
+    chainId: `0x${Number(97).toString(16)}`,
     chainName: "BNB Smart Chain Mainnet",
     nativeCurrency: {
       name: "Binance",
       symbol: "BNB",
       decimals: 18,
     },
-    rpcUrls: ["https://bsc-dataseed1.binance.org/"],
+    // rpcUrls: ["https://bsc-dataseed1.binance.org/"],
+    rpcUrls: ["https://data-seed-prebsc-1-s3.binance.org:8545/"],
+    
     blockExplorerUrls: ["https://bscscan.com/"],
   },
 };
@@ -56,7 +58,7 @@ export const loadWeb3 = async () => {
       await window.ethereum.enable();
       await window.web3.eth.getChainId((err, netId) => {
         switch (netId.toString()) {
-          case "56":
+          case "97":
             isItConnected = true;
             break;
           default:

@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 function Stack_level() {
   let acc = useSelector((state) => state.connect?.connection);
   const [refrealAdress, setrefrealAdress] = useState("");
+  const [referralLink, setrefrealLink] = useState("");
   const [usdtBalance, setUsdtBalance] = useState(0);
   const [myLevel, setMyLevel] = useState("");
   const [copyTest, setcopyTest] = useState(false);
@@ -31,17 +32,29 @@ function Stack_level() {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        let financeAppTokenOf = new web3.eth.Contract(
-          juttoTokenAbi,
-          juttoTokenAddress
-        );
+        // let financeAppTokenOf = new web3.eth.Contract(
+        //   juttoTokenAbi,
+        //   juttoTokenAddress
+        // );
 
-        let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
-        let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
-        setUsdtBalance(usdtamount);
+        // let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
+        // let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
+        // setUsdtBalance(usdtamount);
+
         let userinfo = await financeAppcontractOf.methods.userInfo(acc).call();
         setMyLevel(userinfo.level);
         setrefrealAdress(userinfo.referrer);
+        if (userinfo.totalDeposit > 0) {
+          let spit = window.location.href.split("=");
+          let add = `${spit[0]}=${acc}`;
+          setrefrealLink(add);
+        } else {
+          setrefrealLink(userinfo.referrer);
+          let spit = window.location.href.split("=");
+          let add = `${spit[0]}=${userinfo.referrer}`;
+          console.log("add", add);
+          setrefrealLink(add);
+        }
       }
     } catch (e) {
       console.log(e.message);
@@ -64,13 +77,12 @@ function Stack_level() {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="card stack_inner_card">
-
               <div className="d-flex S_sss">
                 <p className="s_l_p">USDT Balance:</p>
                 <p className=" aliment ">{usdtBalance} USDT</p>
               </div>
               <div className="d-flex S_sss">
-                <p className="s_l_p">Referral:</p>
+                <p className="s_l_p">Referrer:</p>
                 <p className=" aliment width_adjust">{refrealAdress}</p>
                 <p className=" aliment width_adjust2">
                   {refrealAdress?.substring(0, 8) +
@@ -80,16 +92,11 @@ function Stack_level() {
               </div>
               <div className="d-flex S_ssss">
                 <p className="s_l_p">Referral link:</p>
-                <p className=" aliment width_adjust3">{window.location.href}</p>
+                <p className=" aliment width_adjust3">{referralLink}</p>
                 <span style={{ marginTop: "-0.8rem" }}>
                   <CopyToClipboard
                     onCopy={() => setcopyTest(true)}
-                    text={
-                      refrealAdress ==
-                      "0x0000000000000000000000000000000000000000"
-                        ? `${window.location.href} `
-                        : `${window.location.href}?referrallink=${refrealAdress}`
-                    }
+                    text={referralLink}
                   >
                     <AiOutlineCopy className="text-white fs-4" />
                   </CopyToClipboard>

@@ -12,7 +12,9 @@ import Web3 from "web3";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 import { useSelector } from "react-redux";
-const web3Supply = new Web3("https://bsc-dataseed1.binance.org/");
+// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/");
+const web3Supply = new Web3("https://data-seed-prebsc-1-s3.binance.org:8545/")
+
 
 function Register(props, getAccount) {
   let acc = useSelector((state) => state.connect?.connection);

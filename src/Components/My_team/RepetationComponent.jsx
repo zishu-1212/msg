@@ -14,8 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRemaintime } from "../../Redux/remaintime/action";
 import Countdown from "react-countdown";
 import Web3 from "web3";
-const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-
+// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
+const web3Supply = new Web3("https://data-seed-prebsc-1-s3.binance.org:8545/")
 const RepetationComponent = () => {
   let acc = useSelector((state) => state.connect?.connection);
   let { remaintime } = useSelector((state) => state.remaintime);
