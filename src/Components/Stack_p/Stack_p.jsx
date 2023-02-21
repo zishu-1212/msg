@@ -59,20 +59,22 @@ function Stack_p() {
  let boosterFlag = await financeAppcontractOf.methods
           .getBoosterTeamDeposit(acc)
           .call();
-        if (booster < boostert && length >= 1) {
-          setBoosterTime(boostert - booster);
+        if (booster < 10 && length >= 1) {
+          setBoosterTime(10 - booster);
+          console.log("booster", booster);
 
-          let boosterMsg;
-          let boosterEndTime = boostert - booster;
-          if (boosterEndTime <= 0) {
-            if (boosterFlag) {
-              boosterMsg = "Booster Qualified";
-              setBoosterTime(boosterMsg);
-            } else {
-              boosterMsg = "Booster not Qualified";
-              setBoosterTime(boosterMsg);
-            }
-          }
+
+          // let boosterMsg;
+          // let boosterEndTime = boostert - booster;
+          // if (boosterEndTime <= 0) {
+          //   if (boosterFlag) {
+          //     boosterMsg = "Booster Qualified";
+          //     setBoosterTime(boosterMsg);
+          //   } else {
+          //     boosterMsg = "Booster not Qualified";
+          //     setBoosterTime(boosterMsg);
+          //   }
+          // }
         } else {
           let boosterMsg;
           if (boosterFlag) {

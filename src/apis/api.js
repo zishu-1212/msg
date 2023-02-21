@@ -14,6 +14,7 @@ const networks = {
     blockExplorerUrls: ["https://bscscan.com/"],
   },
 };
+
 const changeNetwork = async ({ networkName }) => {
   try {
     if (!window.ethereum) throw new Error("No crypto wallet found");
