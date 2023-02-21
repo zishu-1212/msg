@@ -45,13 +45,13 @@ function Stack_level() {
         setMyLevel(userinfo.level);
         setrefrealAdress(userinfo.referrer);
         if (userinfo.totalDeposit > 0) {
-          let spit = window.location.href.split("=");
-          let add = `${spit[0]}=${acc}`;
+          let spit= window.location.origin + window.location.pathname
+          let add = `${spit}?referrallink=${acc}`;
           setrefrealLink(add);
         } else {
           setrefrealLink(userinfo.referrer);
-          let spit = window.location.href.split("=");
-          let add = `${spit[0]}=${userinfo.referrer}`;
+          let spit= window.location.origin+window.location.pathname
+          let add = `${spit}?referrallink=${userinfo.referrer}`;
           setrefrealLink(add);
         }
       }
