@@ -131,19 +131,20 @@ function Stack_p() {
                     </div>
                   </div>
                 </div>
+
                 <div className="col-lg-6 col-md-12 mt-3">
                   <div className="inner_stack_p">
                     <div className="mt-3">
                       <img
                         src={RankIcon}
                         width={"30px"}
-                        className="icon_color fs-3"
+                        className="img-fluid"
                         alt=""
                       ></img>
                     </div>
                     <div className="mt-3">
                       <h3 className="text-center text_card">User Rank</h3>
-                      <p className="mt-3 text-center text_card">
+                      <p className=" mt-3 text-center text_card">
                         {" "}
                         {userRank ? userRank : "No Rank"}
                       </p>

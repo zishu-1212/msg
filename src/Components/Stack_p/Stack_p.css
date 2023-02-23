@@ -12,12 +12,13 @@
   text-align: center;
 }
 .inner_stack_p {
+  /* width: 100% !important; */
   background-color: #22616a;
   border-radius: 5px;
-  display: flex;
+  /* display: flex; */
   padding: 15px;
-  flex-direction: row !important;
-  gap: 50px;
+  /* flex-direction: row !important; */
+  /* gap: 50px; */
 }
 
 .stack_p_h3 {
