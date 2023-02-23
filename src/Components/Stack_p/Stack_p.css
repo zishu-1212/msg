@@ -6,7 +6,11 @@
   background-color: #0a1f2f;
   padding: 20px;
 }
-
+.text_card {
+  color: white;
+  font-size: 15px;
+  text-align: center;
+}
 .inner_stack_p {
   background-color: #22616a;
   border-radius: 5px;

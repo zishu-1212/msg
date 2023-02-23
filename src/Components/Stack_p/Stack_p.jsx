@@ -53,16 +53,15 @@ function Stack_p() {
 
         let boostert = await financeAppcontractOf.methods.boosterDay().call();
         const length = await financeAppcontractOf.methods
-        .getOrderLength(acc)
-        .call();
+          .getOrderLength(acc)
+          .call();
         // let boosterFlag = false;
- let boosterFlag = await financeAppcontractOf.methods
+        let boosterFlag = await financeAppcontractOf.methods
           .getBoosterTeamDeposit(acc)
           .call();
         if (booster < 10 && length >= 1) {
           setBoosterTime(10 - booster);
           console.log("booster", booster);
-
 
           // let boosterMsg;
           // let boosterEndTime = boostert - booster;
@@ -85,7 +84,6 @@ function Stack_p() {
             setBoosterTime(boosterMsg);
           }
         }
-      
 
         let reward = await financeAppcontractOf.methods
           .getROI(acc, length - 1)
@@ -94,11 +92,9 @@ function Stack_p() {
           reward = reward[1] - reward[2];
         } else {
           reward = "Cycles are completed";
-         
         }
-       
+
         setRewardTime(reward);
-       
       }
     } catch (error) {
       console.log("error", error);
@@ -124,7 +120,63 @@ function Stack_p() {
           <div className="col-lg-8">
             <div className="card stacking_p_card">
               <div className="row">
-                <div className="col-lg-6 mt-3">
+                <div className="col-lg-6 col-md-12 mt-3">
+                  <div className="inner_stack_p">
+                    <div className="mt-3">
+                      <FaUserAlt className="icon_color fs-3"></FaUserAlt>
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-center text_card">Participants</h3>
+                      <p className="mt-3 text-center text_card">{totalUsers}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12 mt-3">
+                  <div className="inner_stack_p">
+                    <div className="mt-3">
+                      <img
+                        src={RankIcon}
+                        width={"30px"}
+                        className="icon_color fs-3"
+                        alt=""
+                      ></img>
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-center text_card">User Rank</h3>
+                      <p className="mt-3 text-center text_card">
+                        {" "}
+                        {userRank ? userRank : "No Rank"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12 mt-3">
+                  <div className="inner_stack_p">
+                    <div className="mt-3">
+                      <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-center text_card">Booster Time</h3>
+                      <p className="mt-3 text-center text_card">
+                        {boosterTime && (
+                          <span className="text_card">{boosterTime}</span>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12 mt-3">
+                  <div className="inner_stack_p">
+                    <div className="mt-3">
+                      <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-center text_card">Cycle Time</h3>
+                      <p className="mt-3 text-center text_card">{rewardTime}</p>
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="col-lg-6 mt-3">
                   <div className="card inner_stack_p">
                     <div className="mt-3">
                       {" "}
@@ -196,7 +248,7 @@ function Stack_p() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* <div className="col-lg-6 mt-3">
                   <div className="card inner_stack_p">
                     <div className="mt-3">
