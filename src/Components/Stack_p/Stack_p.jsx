@@ -113,9 +113,6 @@ function Stack_p() {
   // useEffect(() => {
   //   getBoosterTime();
   // }, [acc]);
-  // useEffect(() => {
-  //   getBoosterTime();
-  // }, [acc]);
   return (
     <div className="main_stack_p_bg">
       <div className="container">
