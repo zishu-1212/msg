@@ -5,17 +5,17 @@ import {
 } from "../../utilies/Contract";
 import Web3 from "web3";
 // const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
+const web3Supply = new Web3
 
 
 export const getpoolDetail = () => {
   return async (dispatch) => {
     try {
-      let financeAppcontractOf = new web3Supply.eth.Contract(
+      let financeAppcontractOf = new Web3.eth.Contract(
         financeAppContract_Abi,
         financeAppContractAddress
       );
-      let totalUsers = await financeAppcontractOf.methods.getDepositorsLength().call();
+      let totalUsers = await financeAppcontractOf.methods.getLatestDepositors().call();
       dispatch({ type: ActionTypes.POOL_DETAIL, payload: totalUsers });
     } catch (e) {
       console.error(e);
@@ -32,7 +32,7 @@ export const getUserRank = (acc) => {
         financeAppContract_Abi,
         financeAppContractAddress
       );
-      let { level } = await financeAppcontractOf.methods.userInfo(acc).call();
+      let { level } = await financeAppcontractOf.methods.getUserInfos(acc).call();
       let userRank = "";
       if (level == 0) {
         userRank = "";

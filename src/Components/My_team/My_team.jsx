@@ -15,8 +15,10 @@ import { useSelector } from "react-redux";
 function My_team() {
   let acc = useSelector((state) => state.connect?.connection);
   const [userinfos, setUserInfos] = useState("");
-  const [downline, setDownline] = useState({});
-  const [team, setTeamDeposite] = useState({});
+  const [downline, setDownline] = useState("");
+  const [team, setTeamDeposite] = useState("");
+  const [otherTeam, setOtherTeam] = useState("");
+  const [TotalTeam, setTotalTeam] = useState("");
 
   const getDetail = async () => {
     try {
@@ -34,13 +36,16 @@ function My_team() {
           financeAppContractAddress
         );
         let userDetails = await financeAppcontractOf.methods
-          .userInfo(acc)
+          .getUserInfos(acc)
           .call();
-        setDownline(userDetails);
+        setDownline(userDetails[0].teamNum);
+        console.log("setDownline",downline)
         let teamDeposite = await financeAppcontractOf.methods
           .getTeamDeposit(acc)
           .call();
-        setTeamDeposite(teamDeposite);
+        setTeamDeposite(teamDeposite.maxTeam);
+        setOtherTeam(teamDeposite.otherTeam);
+        setTotalTeam(teamDeposite.totalTeam);
         let getTeamDeposit = await financeAppcontractOf.methods
           .getTeamDeposit(acc)
           .call();
@@ -50,21 +55,7 @@ function My_team() {
         // let check_Address = checkMaxDeposit.addr;
 
         // checkMaxDeposit = web3.utils.fromWei(checkMaxDeposit.amount);
-        let sales = web3.utils.fromWei(getTeamDeposit[2]);
-        let PerformanceAarea = web3.utils.fromWei(getTeamDeposit[0]);
-        let PerformanceBarea = web3.utils.fromWei(getTeamDeposit[1]);
-        let getOrderLength = await financeAppcontractOf.methods
-          .userInfo(acc)
-          .call();
-        obj["sale"] = sales;
-        obj["PerformanceAarea"] = PerformanceAarea;
-        obj["PerformanceBarea"] = PerformanceBarea;
-        obj["orderLength"] = getOrderLength.teamNum;
-        // obj["checkMaxDeposit"] = checkMaxDeposit;
-        obj["Leval_Data"] = getOrderLength.teamNum;
-        // obj["check_Address"] = check_Address;
-
-        setUserInfos(obj);
+        
       }
     } catch (e) {
       console.log("Transacton Failed");
@@ -72,7 +63,7 @@ function My_team() {
   };
   useEffect(() => {
     getDetail();
-  }, [acc]);
+  }, [acc,getDetail]);
 
   return (
     <div className="mmmmm">
@@ -85,15 +76,15 @@ function My_team() {
             <div className="sale_main">
               <img src={img1} alt="" />
               <div className="team_p text-white ">
-                <span>Sales :</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{userinfos.sale}</span>
+                <span>Total Team Bussines :</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{TotalTeam/1000000}</span>
               </div>
             </div>
             <div className="sale_main">
               <img src={img2} alt="" />
               <div className="team_p text-white ">
                 <span>Downline :</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{downline.teamNum}</span>
+                <span>{downline}</span>
               </div>
             </div>
           </div>
@@ -103,15 +94,15 @@ function My_team() {
             <div className="sale_main">
               <img src={img3} alt="" />
               <div className="team_p text-white ">
-                <span>Power Position Business :</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{userinfos.PerformanceAarea}</span>
+                <span>Team Business :</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{team/1000000}</span>
               </div>
             </div>
             <div className="sale_main">
               <img src={img4} alt="" />
               <div className="team_p text-white ">
-                <span>Support Position Business :</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>{userinfos.PerformanceBarea}</span>
+                <span>Team Business :</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{otherTeam/1000000}</span>
               </div>
             </div>
           </div>

@@ -21,9 +21,10 @@ function Stack_income() {
   const [minutes, setMunits_here] = useState(0);
 
   const [seconds, setSeconds] = useState(0);
+  const [get, setGet] = useState();
 
   const getDetail = async () => {
-    // let acc = await loadWeb3();
+    let acc = await loadWeb3();
 
     try {
       const web3 = window.web3;
@@ -33,6 +34,7 @@ function Stack_income() {
       );
       let depostTime = await financeAppcontractOf.methods.getCurDay().call();
       setdepositTime(depostTime);
+      console.log("depositTime",depositTime);
       let startTime = await financeAppcontractOf.methods.startTime().call();
       setUnixTime(startTime);
     } catch (e) {
@@ -54,61 +56,58 @@ function Stack_income() {
       let getOrderLength = await financeAppcontractOf.methods
         .getOrderLength(acc)
         .call();
-      if (getOrderLength > 0) {
-        getOrderLength = getOrderLength - 1;
+        setGet(getOrderLength)
+        console.log("get",get);
+      // if (getOrderLength > 0) {
+      //   getOrderLength = getOrderLength - 1;
 
-        let orderInfos = await financeAppcontractOf.methods
-          .orderInfos(acc, getOrderLength)
-          .call();
+      //   let orderInfos = await financeAppcontractOf.methods
+      //     .orderInfos(acc, getOrderLength)
+      //     .call();
 
-        // let FinalTime= Number(orderInfos.unfreeze) - Number(orderInfos.start)
-        let FinalTime = Number(orderInfos.unfreeze);
+      //   // let FinalTime= Number(orderInfos.unfreeze) - Number(orderInfos.start)
+      //   let FinalTime = Number(orderInfos.unfreeze);
 
-        var currentDateTime = new Date();
-        let resultInSeconds = currentDateTime.getTime() / 1000;
+      //   var currentDateTime = new Date();
+      //   let resultInSeconds = currentDateTime.getTime() / 1000;
 
-        let Time_here = FinalTime - parseInt(resultInSeconds);
-        let TimeFinal = parseInt(Time_here);
-        if (TimeFinal > 0) {
-          let days = parseInt(TimeFinal / 86400);
+      //   let Time_here = FinalTime - parseInt(resultInSeconds);
+      //   let TimeFinal = parseInt(Time_here);
+      //   if (TimeFinal > 0) {
+      //     let days = parseInt(TimeFinal / 86400);
 
-          setDays_here(days);
-          TimeFinal = TimeFinal % 86400;
-          let hours = parseInt(TimeFinal / 3600);
-          setHours_here(hours);
-          TimeFinal %= 3600;
-          let munites = parseInt(TimeFinal / 60);
-          setMunits_here(munites);
-          TimeFinal %= 60;
-          let second_here = parseInt(TimeFinal);
+      //     setDays_here(days);
+      //     TimeFinal = TimeFinal % 86400;
+      //     let hours = parseInt(TimeFinal / 3600);
+      //     setHours_here(hours);
+      //     TimeFinal %= 3600;
+      //     let munites = parseInt(TimeFinal / 60);
+      //     setMunits_here(munites);
+      //     TimeFinal %= 60;
+      //     let second_here = parseInt(TimeFinal);
 
-          setSeconds(second_here);
+      //     setSeconds(second_here);
 
-          // user = 'yes'
-        } else {
-          setDays_here(0);
-          setHours_here(0);
-          setMunits_here(0);
-          setSeconds(0);
-          // setIsDisable(false)
-        }
-      } else {
-        // toast.error('please deposit 1st')
-      }
+      //     // user = 'yes'
+      //   } else {
+      //     setDays_here(0);
+      //     setHours_here(0);
+      //     setMunits_here(0);
+      //     setSeconds(0);
+      //     // setIsDisable(false)
+      //   }
+      // } else {
+      //   // toast.error('please deposit 1st')
+      // }
     } catch (e) {
       console.log("Error While Get Time", e);
     }
   };
 
-  // useEffect(() => {
-  //   getDetail()
-  //   let id=setInterval(() => {
-  //     getDeposit_time()
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(id)
-  // }
-  // }, []);
+  useEffect(() => {
+    getDetail()
+    getDeposit_time()
+  });
 
   return (
     <div className="Stack_income_bg">
@@ -124,7 +123,7 @@ function Stack_income() {
                   <p className="stack_p width_adjust">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -134,7 +133,7 @@ function Stack_income() {
                   <p className="stack_p width_adjust2">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -146,6 +145,16 @@ function Stack_income() {
                     </a>
                   </p>
                   {/* <p className=' aliment width_adjust2'>{refrealAdress?.substring(0,8) + "..." + refrealAdress?.substring(refrealAdress?.length -8)}</p> */}
+                </div>
+              </div>
+              <div className="d-flex stact_inner">
+                <div className="div">
+                  <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
+                </div>
+                <div>
+                  <p className="stack_p">
+                    Platform Running Time: {depositTime} days
+                  </p>
                 </div>
               </div>
               <div className="d-flex stact_inner">

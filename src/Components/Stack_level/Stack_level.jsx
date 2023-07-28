@@ -4,8 +4,8 @@ import "./Stack_level.css";
 import {
   financeAppContractAddress,
   financeAppContract_Abi,
-  juttoTokenAddress,
-  juttoTokenAbi,
+  busdtokenAbi,
+  busdTokenAddress
 } from "../../utilies/Contract";
 import { toast } from "react-toastify";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -33,25 +33,30 @@ function Stack_level() {
           financeAppContractAddress
         );
         let financeAppTokenOf = new web3.eth.Contract(
-          juttoTokenAbi,
-          juttoTokenAddress
+          busdtokenAbi,
+          busdTokenAddress
         );
 
         let balanceOf = await financeAppTokenOf.methods.balanceOf(acc).call();
-        let usdtamount = Number(web3.utils.fromWei(balanceOf)).toFixed(2);
-        setUsdtBalance(usdtamount);
+        // let usdtamount = Number(web3.utils.fromWei(balanceOf));
+        setUsdtBalance(balanceOf/1000000);
 
-        let userinfo = await financeAppcontractOf.methods.userInfo(acc).call();
-        setMyLevel(userinfo.level);
-        setrefrealAdress(userinfo.referrer);
-        if (userinfo.totalDeposit > 0) {
+        let userinfo = await financeAppcontractOf.methods.getUserInfos(acc).call();
+        console.log("userinfoggdjhehe");
+        setMyLevel(userinfo[0].level);
+        setrefrealAdress(userinfo[0].referrer);
+        console.log("refrealAdress",refrealAdress);
+        console.log("userinfo.maxDeposit",userinfo[0].maxDeposit)
+        if (userinfo[0].maxDeposit >= 0) {  
           let spit= window.location.origin + window.location.pathname
           let add = `${spit}?referrallink=${acc}`;
+          console.log("sada wala",add);
           setrefrealLink(add);
         } else {
-          setrefrealLink(userinfo.referrer);
+          setrefrealLink(userinfo[0].referrer);
           let spit= window.location.origin+window.location.pathname
-          let add = `${spit}?referrallink=${userinfo.referrer}`;
+          let add = `${spit}?referrallink=${refrealAdress}`;
+          console.log("error wala",add);
           setrefrealLink(add);
         }
       }
@@ -61,7 +66,7 @@ function Stack_level() {
   };
   useEffect(() => {
     getDetail();
-  }, [acc]);
+  }, [acc,getDetail]);
 
   useEffect(() => {
     copyTest ? toast.success("Copied") : <></>;

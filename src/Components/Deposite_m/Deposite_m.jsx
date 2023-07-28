@@ -6,6 +6,8 @@ import "./Deposite_m.css";
 import {
   financeAppContractAddress,
   financeAppContract_Abi,
+  busdTokenAddress,
+  busdtokenAbi,
   juttoTokenAddress,
   juttoTokenAbi,
 } from "../../utilies/Contract";
@@ -15,34 +17,39 @@ import { getRemaintime } from "../../Redux/remaintime/action";
 import { withdrawInfo } from "../../Redux/withdrawDetail/action";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
+
 function Deposite_m(props) {
-  let acc = useSelector((state) => state.connect?.connection);
-  let [loader, setloader] = useState(false);
-  let [depositandintrest, setdepositandintrest] = useState("50");
-  let [isOption, setIsOption] = useState(false);
-  let [isToken, setIsToken] = useState("jutto");
+  const acc = useSelector((state) => state.connect?.connection);
+  const [loader, setLoader] = useState(false);
+  const [depositAndInterest, setDepositAndInterest] = useState("");
+  const [isOption, setIsOption] = useState(false);
+  const [isToken, setIsToken] = useState("jutto");
+  const [getTime, setGeTime] = useState();
+  const [unix, setUnix] = useState();
+
   const dispatch = useDispatch();
-  const checkBalance = async () => {
-    try {
-      const web3 = window.web3;
-      if (isToken == "jutto" || isToken == "busd") {
-        const token = new web3.eth.Contract(juttoTokenAbi, juttoTokenAddress);
-        let bal = await token.methods.balanceOf(acc).call();
-        bal = web3.utils.fromWei(bal);
-        return bal;
-      }
-    } catch (error) {
-      console.error("error while check balance", error);
-    }
-  };
+
+  // const checkBalance = async () => {
+  //   try {
+  //     const web3 = window.web3;
+  //     if (isToken === "jutto" || isToken === "busd") {
+  //       const token = new web3.eth.Contract(busdtokenAbi, busdTokenAddress);
+  //       let bal = await token.methods.balanceOf(acc).call();
+  //       bal = web3.utils.fromWei(bal);
+  //       return bal;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error while checking balance", error);
+  //   }
+  // };
 
   const depositAmount = async () => {
     try {
-      if (acc == "No Wallet") {
+      if (acc === "No Wallet") {
         toast.info("No Wallet");
-      } else if (acc == "Wrong Network") {
+      } else if (acc === "Wrong Network") {
         toast.info("Wrong Wallet");
-      } else if (acc == "Connect Wallet") {
+      } else if (acc === "Connect Wallet") {
         toast.info("Connect Wallet");
       } else {
         const web3 = window.web3;
@@ -50,97 +57,164 @@ function Deposite_m(props) {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        const token = new web3.eth.Contract(juttoTokenAbi, juttoTokenAddress);
-        let {totalDeposit}=await contract.methods.userInfo(acc).call()
-        totalDeposit=web3.utils.fromWei(totalDeposit)
-        if((2500-totalDeposit)>0){
-          if (
-            parseInt(depositandintrest) >= 50 &&
-            parseInt(depositandintrest) <= 2500
-          ) {
-            if (parseInt(depositandintrest) % 50 == 0) {
-              const { maxDeposit, referrer } = await contract.methods
-                .userInfo(acc)
-                .call();
-  
-              let value;
-              let approveAmount = web3.utils.toWei(depositandintrest);
-              let userTokenBalance = await checkBalance();
-  
-              // if( parseFloat(userTokenBalance) >= parseFloat(web3.utils.fromWei(value))){
-              if (
-                parseFloat(approveAmount) >=
-                parseFloat(web3.utils.fromWei(maxDeposit))
-              ) {
-                if (referrer == "0x0000000000000000000000000000000000000000") {
-                  toast.error("please Register Account 1st");
+
+        const currentDate = new Date();
+        const epochTime = currentDate.getTime();
+        const unixTimestamp = Math.floor(epochTime / 1000);
+
+        console.log("Unix Timestamp:", unixTimestamp);
+
+        setGeTime(unixTimestamp);
+        const token = new web3.eth.Contract(busdtokenAbi, busdTokenAddress);
+
+        const userInfo = await contract.methods.getUserInfos(acc).call();
+        const totalDeposit = userInfo[0].maxDeposit;
+        console.log("totalDeposit", totalDeposit);
+        const reffere = userInfo[0].referrer;
+        const maxDepositable = userInfo[0].maxDepositable;
+        console.log("maxDepositable", maxDepositable);
+        const totalDepositWei = totalDeposit;
+        console.log("totalDepositWei", totalDepositWei);
+
+        const getUserInfos = await contract.methods.getUserInfos(acc).call();
+        const index = getUserInfos[0].unfreezeIndex;
+        console.log("index", index);
+
+        const getCurDay = await contract.methods.getCurDay().call();
+        console.log("getCurDayssssss", getCurDay);
+        const getDayInfos = await contract.methods
+          .getDayInfos(getCurDay)
+          .call();
+
+        console.log("getDayInfos", getDayInfos);
+        const getMaxDayNewbies = await contract.methods
+          .getMaxDayNewbies(getCurDay)
+          .call();
+        console.log("getMaxDayNewbies", getMaxDayNewbies);
+
+        if (totalDeposit == 0) {
+          const approveAmount = depositAndInterest * 1000000000000;
+          setLoader(true);
+          await token.methods
+            .approve(financeAppContractAddress, approveAmount)
+            .send({
+              from: acc,
+            });
+          setLoader(false);
+
+          const approveAmountss = approveAmount / 1000000;
+          console.log("ammmmmiiot", approveAmountss);
+
+          await contract.methods.deposit(approveAmountss).send({
+            from: acc,
+          });
+
+          toast.success("Amount deposited successfully");
+        } else {
+          const getUnfreeze = await contract.methods
+            .getOrderUnfreezeTime(acc, index)
+            .estimateGas();
+          console.log("Unix Timestamp:hellloenchd bdjbd", getUnfreeze);
+          setUnix(getUnfreeze);
+          console.log("getUnfreeze", getUnfreeze);
+          if (parseInt(unixTimestamp) > parseInt(getUnfreeze)) {
+            console.log(
+              `depositAndInterest ${typeof depositAndInterest} and totalDeposit ${typeof totalDeposit}`
+            );
+
+            if (depositAndInterest > totalDeposit) {
+              const depositValue = parseInt(depositAndInterest);
+
+              if (depositValue >= 25 && depositValue <= 3000) {
+                if (depositValue % 25 === 0) {
+                  const { maxDeposit, referrer } = userInfo || {};
+                  const levelValue = depositAndInterest;
+                  const approveAmount = depositAndInterest * 1000000000000;
+
+                  if (parseFloat(approveAmount) >= parseFloat(totalDeposit)) {
+                    if (
+                      referrer === "0x0000000000000000000000000000000000000000"
+                    ) {
+                      toast.error("Please Register Account 1st");
+                    } else {
+                      setLoader(true);
+                      await token.methods
+                        .approve(financeAppContractAddress, approveAmount)
+                        .send({
+                          from: acc,
+                        });
+                      setLoader(false);
+
+                      const approveAmountss = approveAmount / 1000000;
+                      // console.log("ammmmmiiot", approveAmountss);
+
+                      await contract.methods.deposit(approveAmountss).send({
+                        from: acc,
+                      });
+
+                      // Assuming these functions exist and serve specific purposes
+                      checkFirstTime();
+                      dispatch(getRemaintime());
+                      dispatch(getpoolDetail());
+                      dispatch(getUserRank(acc));
+                      dispatch(withdrawInfo(acc));
+
+                      props.onHide();
+                      toast.success("Amount deposited successfully");
+                    }
+                  } else {
+                    toast.info(
+                      `Please enter a value of ${web3.utils.fromWei(
+                        maxDeposit
+                      )} or above`
+                    );
+                  }
                 } else {
-                  setloader(true);
-  
-                  await token.methods
-                    .approve(financeAppContractAddress, approveAmount)
-                    .send({
-                      from: acc,
-                    });
-                  await contract.methods.deposit(approveAmount).send({
-                    from: acc,
-                  });
-  
-                  checkFirstTime();
-                  dispatch(getRemaintime());
-                  dispatch(getpoolDetail());
-                  dispatch(getUserRank(acc));
-                  dispatch(withdrawInfo(acc));
-                  props.onHide();
-                  toast.success("Amount Deposited successfully");
-                  setloader(false);
+                  toast.info("Please enter a value in multiples of 25");
                 }
               } else {
-                toast.info(
-                  `please enter value ${web3.utils.fromWei(maxDeposit)} or above`
-                );
+                toast.info("Value must be between 25 and 3000");
               }
             } else {
-              toast.info("Please enter value in multiple of 50");
+              toast.info("Increase the amount of deposit");
             }
           } else {
-            toast.info("value must be greater then 50 and less then 2500 ");
+            toast.info("Freeze Time Not Completed");
           }
         }
-        else{
-          toast.info("Remaing deposit limit reached")
-        }
-       
       }
     } catch (error) {
-      setloader(false);
-      console.error("error while deposit amount", error.message);
+      setLoader(false);
+      console.error("Error while deposit amount:", error);
     }
   };
 
   const checkFirstTime = async () => {
     try {
-      console.log("acc",acc);
       if (
-        acc != "No Wallet" &&
-        acc != "Wrong Network" &&
-        acc != "Connect Wallet"
+        acc !== "No Wallet" &&
+        acc !== "Wrong Network" &&
+        acc !== "Connect Wallet"
       ) {
         const web3 = window.web3;
         const contract = new web3.eth.Contract(
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        let { maxDeposit } = await contract.methods.userInfo(acc).call();
+        const { maxDeposit } = await contract.methods.getUserInfos(acc).call();
         setIsOption(parseFloat(maxDeposit) > 0 ? false : true);
       }
     } catch (error) {
-      console.error("error while check first time", error);
+      console.error("Error while checking first time:", error);
     }
   };
+
   useEffect(() => {
-    checkFirstTime();
+    setInterval(() => {
+      checkFirstTime();
+    }, 300000);
   }, [acc]);
+
   return (
     <div>
       <Modal
@@ -162,9 +236,10 @@ function Deposite_m(props) {
                         border: "1px solid #00A79D",
                       }}
                     >
-                      <MdArrowBackIos></MdArrowBackIos>
+                      <MdArrowBackIos />
                     </Button>
                   </div>
+
                   <h4 className="ms-5 modal_h4">Deposit</h4>
                 </div>
               </div>
@@ -177,17 +252,15 @@ function Deposite_m(props) {
               <div className="col-lg-8">
                 <input
                   type="number"
-                  min="50"
-                  max="2500"
-                  value={depositandintrest}
+                  value={depositAndInterest}
                   onChange={(e) => {
-                    setdepositandintrest(e.target.value);
+                    setDepositAndInterest(e.target.value);
                   }}
                   className="input_modal"
-                  placeholder="50"
+                  placeholder="25"
                 />
                 <p className="modal_pa">
-                  Minimum deposit 50 USDT. A ratio of 50 max 2500
+                  Minimum deposit 25 USDT. A ratio of 25 max 3000
                 </p>
               </div>
               {/* { isOption && <div className='col-lg-4'>
@@ -201,7 +274,7 @@ function Deposite_m(props) {
           </div>
         </Modal.Body>
         <Modal.Footer className="footer_m_bg">
-          <Button className="s_d_Ws  w-100" onClick={depositAmount}>
+          <Button className="s_d_Ws w-100" onClick={depositAmount}>
             {loader ? (
               <ReactLoading
                 type="spin"
@@ -212,7 +285,7 @@ function Deposite_m(props) {
               />
             ) : (
               "Confirm"
-            )}{" "}
+            )}
           </Button>
         </Modal.Footer>
       </Modal>

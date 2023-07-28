@@ -15,7 +15,7 @@ import { getRemaintime } from "../../Redux/remaintime/action";
 import Countdown from "react-countdown";
 import Web3 from "web3";
 // const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
+const web3Supply = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545")
 const RepetationComponent = () => {
   let acc = useSelector((state) => state.connect?.connection);
   let { remaintime } = useSelector((state) => state.remaintime);
@@ -61,6 +61,7 @@ const RepetationComponent = () => {
       );
       let depostTime = await financeAppcontractOf.methods.getCurDay().call();
       setdepositTime(depostTime);
+      console.log("depostTime",depostTime);
     } catch (e) {
       console.log(e.message);
     }
@@ -98,6 +99,7 @@ const RepetationComponent = () => {
           <div className="col-lg-8">
             <div className="card stacking_card">
               <div className="d-flex stact_inner">
+                
                 <div className="div">
                   <MdLocationOn className="icon_color fs-3"></MdLocationOn>
                 </div>
@@ -105,7 +107,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >
@@ -115,7 +117,7 @@ const RepetationComponent = () => {
                   <p className="stack_p width_adjust2">
                     Contract address:{" "}
                     <a
-                      href={`https://bscscan.com/address/${financeAppContractAddress}`}
+                      href={`https://testnet.bscscan.com/address/${financeAppContractAddress}`}
                       className="stack_p"
                       target="_blank"
                     >

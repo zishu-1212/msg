@@ -38,19 +38,28 @@ function Split_m(props) {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        if (parseFloat(amount) >= 50) {
-          const { totalDeposit, referrer } = await contract.methods
-            .userInfo(acc)
+        if (parseFloat(amount) >= 25) {
+          const userInfo = await contract.methods
+            .getUserInfos(acc)
             .call();
-          const { split } = await contract.methods.rewardInfo(acc).call();
+            // console.log("userInfo",userInfo);
+            const deposit = userInfo[0].maxDeposit
+            const depositref = userInfo[0].referrer
+            // console.log("deposit",deposit);
+            // console.log("depositref",depositref);
+          const reward = userInfo.reward;
+          const split = reward.split;
+
+          // console.log("split",split);
           if (parseFloat(split) >= parseInt(amount)) {
-            if (parseFloat(totalDeposit) == 0) {
-              if (parseInt(amount) % 50 === 0) {
-                if (referrer == "0x000000000000000000000000000000000") {
+            if (parseFloat(deposit) == 0) {
+              if (parseInt(amount) % 25 === 0) {
+                if (depositref == "0x000000000000000000000000000000000") {
                   toast.error("please Register Account first ");
                 } else {
                   setloader(true);
                   let value = web3.utils.toWei(amount);
+                  console.log("value",value)
                   await contract.methods.depositBySplit(value).send({
                     from: acc,
                   });
@@ -60,7 +69,7 @@ function Split_m(props) {
                   setloader(false);
                 }
               } else {
-                toast.error("please enter value in ratio 50 ");
+                toast.error("please enter value in ratio 25 ");
               }
             } else {
               setdepositcheck(1);
@@ -95,13 +104,22 @@ function Split_m(props) {
           financeAppContract_Abi,
           financeAppContractAddress
         );
-        if (parseFloat(amount) >= 50) {
-          const { totalDeposit, referrer } = await contract.methods
-            .userInfo(acc)
+        if (parseFloat(amount) >= 25) {
+          const userInfo = await contract.methods
+            .getUserInfos(acc)
             .call();
-          const split = await contract.methods.getCurSplit(acc).call();
+            console.log("userInfo",userInfo);
+            const deposit = userInfo[0].maxDeposit
+            const referrer = userInfo[0].referrer
+            console.log("deposit",deposit);
+            console.log("referrer",referrer);
+          const reward = userInfo.reward;
+          const split = reward.split;
+console.log("split",split);
+          // const split = await contract.methods.getCurSplit(acc).call();
+
           if (parseFloat(split) >= parseInt(amount)) {
-            if (parseInt(amount) % 50 === 0) {
+            if (parseInt(amount) % 25 === 0) {
               if (referrer == "0x0000000000000000000000000000000000000000") {
                 toast.error("please Register Account 1st ");
               } else {
@@ -117,7 +135,7 @@ function Split_m(props) {
                 setloader(false);
               }
             } else {
-              toast.error("please enter value in ratio 50 ");
+              toast.error("please enter value in ratio 25  ");
             }
           } else {
             toast.info("You don't have any split amount");

@@ -35,7 +35,7 @@ function Latest_Deposit() {
         financeAppContractAddress
       );
       let depositLength = await financeAppcontractOf.methods
-        .getDepositorsLength()
+        .getLatestDepositors()
         .call();
       console.log("depositLength", depositLength);
       let dd = {};

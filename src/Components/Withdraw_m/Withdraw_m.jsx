@@ -11,6 +11,8 @@ import {
 import { withdrawInfo } from "../../Redux/withdrawDetail/action";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
+import Web3 from "web3";
+const web3Supply = new Web3("https://polygon-testnet.public.blastapi.io")
 
 function Withdraw_m(props) {
   let acc = useSelector((state) => state.connect?.connection);
@@ -18,6 +20,9 @@ function Withdraw_m(props) {
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
   const [loader2, setLoader2] = useState(false);
+  const [revad, setRevad] = useState("");
+  const [revadNumber, setRevadNumber] = useState("");
+
   const getDetail = async () => {
     try {
       if (acc == "No Wallet") {
@@ -41,6 +46,7 @@ function Withdraw_m(props) {
     getDetail();
   }, [acc]);
   const withdrawAmount = async () => {
+    getUser()
     try {
       if (acc == "No Wallet") {
         toast.info("No Wallet");
@@ -50,8 +56,9 @@ function Withdraw_m(props) {
         toast.info("Connect Wallet");
       } else {
         setLoader(true);
-        if (withdrawDetail?.all_val > 0) {
+        if (revad === true) { // Use triple equals (===) for comparison
           const web3 = window.web3;
+          // console.log("hello this not working");
           let financeAppcontractOf = new web3.eth.Contract(
             financeAppContract_Abi,
             financeAppContractAddress
@@ -74,35 +81,30 @@ function Withdraw_m(props) {
       console.log(e);
     }
   };
-  const handleUpdateROI = async () => {
-    try {
-      if (acc == "No Wallet") {
-        toast.info("No Wallet");
-      } else if (acc == "Wrong Network") {
-        toast.info("Wrong Wallet");
-      } else if (acc == "Connect Wallet") {
-        toast.info("Connect Wallet");
-      } else {
-        setLoader2(true);
-        const web3 = window.web3;
-        let financeAppcontractOf = new web3.eth.Contract(
-          financeAppContract_Abi,
-          financeAppContractAddress
-        );
-        await financeAppcontractOf.methods.claimROIReward().send({
-          from: acc,
-        });
-        getDetail();
-        toast.success("successfully Updated ROI");
-        setLoader2(false);
-      }
-    } catch (e) {
-      console.log(e);
-      setLoader2(false);
+  
+  
 
-      toast.error("Transaction Failed");
+
+  const getUser =async()=>{
+    try {
+  
+      let financeAppcontractOf = new web3Supply.eth.Contract(
+        financeAppContract_Abi,
+        financeAppContractAddress
+      );
+      let totalUsers = await financeAppcontractOf.methods.getUserInfos(acc).call();
+      console.log("invited",totalUsers[1].invited)
+      setRevadNumber(totalUsers[1])
+      setRevad(totalUsers[1].statics||totalUsers[1].bonusReleased ||totalUsers[1].invited > 0 )
+console.log("Revad",revad);
+     } catch (e) {
+      console.error(e);
     }
-  };
+} 
+useEffect(()=>{
+  getUser()
+},[acc]
+)
   return (
     <div>
       <Modal
@@ -140,8 +142,8 @@ function Withdraw_m(props) {
               <div className="row ">
                 <div className="col-lg-12">
                   <div className="d-flex justify-content-between">
-                    <p className="text-white">Split Reward</p>
-                    <p className="witddraw_p">{withdrawDetail?.split} USDT</p>
+                    <p className="text-white">statics Reward</p>
+                    <p className="witddraw_p">{revadNumber.statics/1000000} USDT</p>
                   </div>
                 </div>
               </div>
@@ -160,33 +162,26 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Cycle reward</p>
-                  <p className="witddraw_p">{withdrawDetail?.roi} USDT</p>
+                  <p className="text-white">split reward</p>
+                  <p className="witddraw_p">{revadNumber.split/1000000} USDT</p>
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Direct Referral Income</p>
-                  <p className="witddraw_p">{withdrawDetail?.capitals} USDT</p>
+                  <p className="text-white">predictWin</p>
+                  <p className="witddraw_p">{revadNumber.predictWin/1000000} USDT</p>
                 </div>
               </div>
             </div>
+           
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Diamond</p>
-                  <p className="witddraw_p">{withdrawDetail?.diamond} USDT</p>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="d-flex justify-content-between">
-                  <p className="text-white">Double Diamond</p>
+                  <p className="text-white">l5Released</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.doubleDiamond} USDT
+                    {revadNumber.l5Released/1000000} USDT
                   </p>
                 </div>
               </div>
@@ -194,9 +189,9 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Daily Equality Dividend</p>
+                  <p className="text-white">l5Freezed</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.directPool} USDT
+                    {revadNumber.l5Freezed/1000000} USDT
                   </p>
                 </div>
               </div>
@@ -206,16 +201,16 @@ function Withdraw_m(props) {
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
                   <p className="text-white">ROI</p>
-                  <p className="witddraw_p">{withdrawDetail?.roi} USDT</p>
+                  <p className="witddraw_p">{revadNumber.roi} USDT</p>
                 </div>
               </div>
             </div> */}
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Level 1 Team Reward</p>
+                  <p className="text-white">invited</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.level1ROIIncome} USDT
+                    {revadNumber.invited/1000000} USDT
                   </p>
                 </div>
               </div>
@@ -223,9 +218,9 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Level 2-5 Team Reward</p>
+                  <p className="text-white">capitals</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.level4ROIIncome} USDT
+                    {revadNumber.capitals/1000000} USDT
                   </p>
                 </div>
               </div>
@@ -233,9 +228,9 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Level 6-15 Team Reward</p>
+                  <p className="text-white">bonusReleased</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.level5ROIIncome} USDT
+                    {revadNumber.bonusReleased/1000000} USDT
                   </p>
                 </div>
               </div>
@@ -246,16 +241,24 @@ function Withdraw_m(props) {
                 <div className="d-flex justify-content-between">
                   <p className="text-white">Top</p>
                   <p className="witddraw_p">
-                    {withdrawDetail?.top} USDT
+                    {revadNumber.top} USDT
                   </p>
                 </div>
               </div>
             </div> */}
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="d-flex justify-content-between">
+                  <p className="text-white">bonusFreezed</p>
+                  <p className="witddraw_p">{revadNumber.bonusFreezed/1000000} USDT</p>
+                </div>
+              </div>
+            </div>
             {/* <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Top player reward</p>
-                  <p className="witddraw_p">{withdrawDetail?.top} USDT</p>
+                  <p className="text-white">lastWithdaw</p>
+                  <p className="witddraw_p">{revadNumber.lastWithdaw/1000000} USDT</p>
                 </div>
               </div>
             </div> */}
@@ -266,8 +269,8 @@ function Withdraw_m(props) {
             <div className="row">
               <div className="col-lg-12">
                 <div className="d-flex justify-content-between">
-                  <p className="text-white">Total Withdrawable</p>
-                  <p className="witddraw_p">{withdrawDetail?.all_val} USDT</p>
+                  <p className="text-white">Total Withdraw</p>
+                  <p className="witddraw_p"> USDT</p>
                 </div>
               </div>
             </div>
@@ -299,24 +302,7 @@ function Withdraw_m(props) {
               "Withdraw"
             )}
           </Button>
-          <Button
-            className="s_d_Ws  w-100"
-            onClick={() => {
-              handleUpdateROI();
-            }}
-          >
-            {loader2 ? (
-              <ReactLoading
-                type="spin"
-                color="#ffffff"
-                className="mb-2 mx-auto"
-                height={30}
-                width={30}
-              />
-            ) : (
-              "Update ROI"
-            )}
-          </Button>
+          
         </Modal.Footer>
       </Modal>
     </div>

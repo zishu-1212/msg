@@ -22,6 +22,7 @@ function Register(props, getAccount) {
   let [regisdterAdress, setRegisdterAdress] = useState("");
   let [amount, setAmount] = useState("");
   const [RefID, setRefID] = useState("");
+  const [hello, setHello] = useState("");
   let [loader, setloader] = useState(false);
 
   const registerAddress = async () => {
@@ -32,17 +33,17 @@ function Register(props, getAccount) {
         financeAppContract_Abi,
         financeAppContractAddress
       );
-      await contract.methods.register(regisdterAdress).send({
-        from: acc,
-      });
+      await contract.methods.register(regisdterAdress).send({ from: acc });
       props.onHide();
-      toast.success("user registerd successfully");
-      setloader(false);
+      toast.success("User registered successfully");
     } catch (error) {
+      console.error("Error while registering address:", error.message);
+      toast.error("Failed to register user");
+    } finally {
       setloader(false);
-      console.error("error while register address", error.message);
     }
   };
+  
   const newRegister = async () => {
     try {
       if (acc == "No Wallet") {
@@ -58,16 +59,23 @@ function Register(props, getAccount) {
           financeAppContractAddress
         );
         const refAddress = await contract.methods.defaultRefer().call();
-        const { referrer } = await contract.methods.userInfo(acc).call();
-        if (referrer == "0x0000000000000000000000000000000000000000") {
+        console.log("refAddress",refAddress)
+        console.log("regisdterAdress",regisdterAdress)
+        const referrer  = await contract.methods.getUserInfos(acc).call();
+        const refer = referrer[0].referrer
+        // setHello(referrer)
+        
+        if (refer === "0x0000000000000000000000000000000000000000")  {
           if (refAddress == regisdterAdress) {
+            console.log("is this correct");
             registerAddress();
           } else {
-            const { maxDeposit } = await contract.methods
-              .userInfo(regisdterAdress)
+            const  maxDeposit  = await contract.methods
+              .getUserInfos(regisdterAdress)
               .call();
-            console.log("maxDeposit", maxDeposit);
-            if (maxDeposit > 0) {
+              let maxDep =maxDeposit[0].maxDeposit
+            console.log("maxDeposit", maxDep);
+            if (maxDep > 0) {
               registerAddress();
             } else {
               toast.error("Invalid referral");
@@ -103,8 +111,9 @@ function Register(props, getAccount) {
           financeAppContractAddress
         );
         const refAddress = await contract.methods.defaultRefer().call();
-        console.log("refAddress",refAddress)
+       
         setRegisdterAdress(refAddress);
+        console.log("refAddress",regisdterAdress)
       }
     } catch (e) {
       console.log("Error Whille Referral Fuction Call", e);
@@ -112,6 +121,7 @@ function Register(props, getAccount) {
   };
   useEffect(() => {
     ReferralAddress();
+   
   }, [acc]);
 
   return (

@@ -10,13 +10,23 @@ import {
   financeAppContractAddress,
   financeAppContract_Abi,
 } from "../../utilies/Contract";
+
 import { toast } from "react-toastify";
+import Web3 from "web3";
+// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
+const web3Supply = new Web3("https://polygon-testnet.public.blastapi.io");
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);
+  // console.log("totalUsers",totalUsers);
   let { userRank } = useSelector((state) => state.userRank);
+
   const [boosterTime, setBoosterTime] = useState(0);
   const [rewardTime, setRewardTime] = useState("0");
+  const [tean, setTean] = useState("0");
+  const [depositTerm, setDepositTerm] = useState("None Rank");
+  const [curCycle, setCurCycle] = useState("0");
+  const [curDay, setCurDay] = useState("0");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getpoolDetail());
@@ -32,84 +42,169 @@ function Stack_p() {
       dispatch(getUserRank(acc));
     }
   };
-  const getBoosterTime = async () => {
+  const getUser = async () => {
     try {
-      console.log(acc, "acc");
-      if (acc == "No Wallet") {
-        console.log("No Wallet");
-      } else if (acc == "Wrong Network") {
-        console.log("Wrong Wallet");
-      } else if (acc == "Connect Wallet") {
-        console.log("Connect Wallet");
+      const web3 = window.Web3;
+      let financeAppcontractOf = new web3Supply.eth.Contract(
+        financeAppContract_Abi,
+        financeAppContractAddress
+      );
+      let totalUsers = await financeAppcontractOf.methods
+        .getUserInfos(acc)
+        .call();
+      setTean(totalUsers[0].teamNum);
+    } catch (e) {
+      console.error(e);
+    }
+  }; // const getBoosterTime = async () => {
+  //   try {
+  //     console.log(acc, "acc");
+  //     if (acc == "No Wallet") {
+  //       console.log("No Wallet");
+  //     } else if (acc == "Wrong Network") {
+  //       console.log("Wrong Wallet");
+  //     } else if (acc == "Connect Wallet") {
+  //       console.log("Connect Wallet");
+  //     } else {
+  //       const web3 = window.web3;
+  //       let financeAppcontractOf = new web3.eth.Contract(
+  //         financeAppContract_Abi,
+  //         financeAppContractAddress
+  //       );
+
+  //       let boostert = await financeAppcontractOf.methods.boosterDay().call();
+  //       const length = await financeAppcontractOf.methods
+  //         .getOrderLength(acc)
+  //         .call();
+  //       // let boosterFlag = false;
+  //       let boosterFlag = await financeAppcontractOf.methods
+  //         .getBoosterTeamDeposit(acc)
+  //         .call();
+  //       if (booster < 10 && length >= 1) {
+  //         setBoosterTime(10 - booster);
+  //         console.log("booster", booster);
+
+  //         // let boosterMsg;
+  //         // let boosterEndTime = boostert - booster;
+  //         // if (boosterEndTime <= 0) {
+  //         //   if (boosterFlag) {
+  //         //     boosterMsg = "Booster Qualified";
+  //         //     setBoosterTime(boosterMsg);
+  //         //   } else {
+  //         //     boosterMsg = "Booster not Qualified";
+  //         //     setBoosterTime(boosterMsg);
+  //         //   }
+  //         // }
+  //       } else {
+  //         let boosterMsg;
+  //         if (boosterFlag) {
+  //           boosterMsg = "Booster Qualified";
+  //           setBoosterTime(boosterMsg);
+  //         } else {
+  //           boosterMsg = "Booster not Qualified";
+  //           setBoosterTime(boosterMsg);
+  //         }
+  //       }
+
+  //       let reward = await financeAppcontractOf.methods
+  //         .getROI(acc, length - 1)
+  //         .call();
+  //       if (reward[2] <= 50) {
+  //         reward = reward[1] - reward[2];
+  //       } else {
+  //         reward = "Cycles are completed";
+  //       }
+
+  //       setRewardTime(reward);
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // };
+
+  const rank = async () => {
+    try {
+      const web3 = window.web3;
+      let obj = {};
+      let financeAppcontractOf = new web3.eth.Contract(
+        financeAppContract_Abi,
+        financeAppContractAddress
+      );
+      let level = await financeAppcontractOf.methods.getUserInfos(acc).call();
+      const deposit = level[0].maxDeposit / 1000000;
+      // console.log("deposit", deposit);
+      let userRank = "";
+
+      // Define the conditions for each rank based on the given information
+      if (deposit >= 25 && deposit <= 1950) {
+        userRank = "BEGINER";
+      } else if (deposit >= 1000) {
+        userRank = "PROMOTER";
+      } else if (deposit >= 2000) {
+        userRank = "DIAMOND";
+      } else if (deposit >= 3000) {
+        userRank = "GLOBAL DIAMOND";
       } else {
-        const web3 = window.web3;
-        let financeAppcontractOf = new web3.eth.Contract(
-          financeAppContract_Abi,
-          financeAppContractAddress
-        );
-        let booster = await financeAppcontractOf.methods
-          .getTimeDiffer(acc)
-          .call();
-
-        let boostert = await financeAppcontractOf.methods.boosterDay().call();
-        const length = await financeAppcontractOf.methods
-          .getOrderLength(acc)
-          .call();
-        // let boosterFlag = false;
-        let boosterFlag = await financeAppcontractOf.methods
-          .getBoosterTeamDeposit(acc)
-          .call();
-        if (booster < 10 && length >= 1) {
-          setBoosterTime(10 - booster);
-          console.log("booster", booster);
-
-          // let boosterMsg;
-          // let boosterEndTime = boostert - booster;
-          // if (boosterEndTime <= 0) {
-          //   if (boosterFlag) {
-          //     boosterMsg = "Booster Qualified";
-          //     setBoosterTime(boosterMsg);
-          //   } else {
-          //     boosterMsg = "Booster not Qualified";
-          //     setBoosterTime(boosterMsg);
-          //   }
-          // }
-        } else {
-          let boosterMsg;
-          if (boosterFlag) {
-            boosterMsg = "Booster Qualified";
-            setBoosterTime(boosterMsg);
-          } else {
-            boosterMsg = "Booster not Qualified";
-            setBoosterTime(boosterMsg);
-          }
-        }
-
-        let reward = await financeAppcontractOf.methods
-          .getROI(acc, length - 1)
-          .call();
-        if (reward[2] <= 50) {
-          reward = reward[1] - reward[2];
-        } else {
-          reward = "Cycles are completed";
-        }
-
-        setRewardTime(reward);
+        userRank = "No Rank"; // If the level does not fall into any of the defined ranges
       }
+
+      // Here, you can do further processing based on the userRank or perform actions based on the rank.
+      setDepositTerm(userRank);
+      // console.log("User Rank:", userRank);
+      return userRank;
     } catch (error) {
-      console.log("error", error);
+      console.error("");
     }
   };
+
+  const current = async () => {
+    try {
+      const web3 = window.Web3;
+      let financeAppcontractOf = new web3Supply.eth.Contract(
+        financeAppContract_Abi,
+        financeAppContractAddress
+      );
+      let CurCycle = await financeAppcontractOf.methods.getCurCycle().call();
+      // console.log("CurCycle",CurCycle);
+      setCurCycle(CurCycle);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const currentDay = async () => {
+    try {
+      const web3 = window.Web3;
+      let financeAppcontractOf = new web3Supply.eth.Contract(
+        financeAppContract_Abi,
+        financeAppContractAddress
+      );
+      let CurDay = await financeAppcontractOf.methods.getCurDay().call();
+      // console.log("CurDay",CurDay);
+      setCurDay(CurDay);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
-    getRank();
-    getBoosterTime();
-  }, [acc]);
+    const interval = setInterval(() => {
+      rank();
+      currentDay();
+      current();
+      getUser();
+    }, 2000); // 2000ms = 2s
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(interval);
+  }, [acc, rank, currentDay,getUser ,current]);
 
   useEffect(() => {
     setInterval(() => {
-      getBoosterTime();
+    
+      current();
+      getRank();
     }, 30000);
-  }, [acc]);
+  }, [acc , rank]);
   // useEffect(() => {
   //   getBoosterTime();
   // }, [acc]);
@@ -127,7 +222,7 @@ function Stack_p() {
                     </div>
                     <div className="mt-3">
                       <h3 className="text-center text_card">Participants</h3>
-                      <p className="mt-3 text-center text_card">{totalUsers}</p>
+                      <p className="mt-3 text-center text_card">{tean}</p>
                     </div>
                   </div>
                 </div>
@@ -145,8 +240,7 @@ function Stack_p() {
                     <div className="mt-3">
                       <h3 className="text-center text_card">User Rank</h3>
                       <p className=" mt-3 text-center text_card">
-                        {" "}
-                        {userRank ? userRank : "No Rank"}
+                        {depositTerm}
                       </p>
                     </div>
                   </div>
@@ -157,11 +251,9 @@ function Stack_p() {
                       <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
                     </div>
                     <div className="mt-3">
-                      <h3 className="text-center text_card">Booster Time</h3>
+                      <h3 className="text-center text_card">Current Day</h3>
                       <p className="mt-3 text-center text_card">
-                        {boosterTime && (
-                          <span className="text_card">{boosterTime}</span>
-                        )}
+                        <span className="text_card">{curDay}</span>
                       </p>
                     </div>
                   </div>
@@ -172,8 +264,8 @@ function Stack_p() {
                       <BsFillStopwatchFill className="icon_color fs-3"></BsFillStopwatchFill>
                     </div>
                     <div className="mt-3">
-                      <h3 className="text-center text_card">Cycle Time</h3>
-                      <p className="mt-3 text-center text_card">{rewardTime}</p>
+                      <h3 className="text-center text_card">Current Cycle </h3>
+                      <p className="mt-3 text-center text_card">{curCycle}</p>
                     </div>
                   </div>
                 </div>
