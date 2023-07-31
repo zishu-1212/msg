@@ -13,8 +13,8 @@ import {
 
 import { toast } from "react-toastify";
 import Web3 from "web3";
-// const web3Supply = new Web3("https://bsc-dataseed1.binance.org/")
-const web3Supply = new Web3("https://polygon-testnet.public.blastapi.io");
+const web3Supply = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545")
+// const web3Supply = new Web3("https://polygon-testnet.public.blastapi.io");
 function Stack_p() {
   let acc = useSelector((state) => state.connect?.connection);
   let { totalUsers } = useSelector((state) => state.poolInfo);

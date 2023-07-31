@@ -2,16 +2,16 @@ import Web3 from "web3";
 let isItConnected = false;
 const networks = {
   bsc: {
-    chainId: `80001`,
-    chainName: "mumbai",
+    chainId: `97`,
+    chainName: "Binance Smart Chain Testnet",
     nativeCurrency: {
-      name: "mumbai",
-      symbol: "MATIC",
+      name: "Binance",
+      symbol: "tBNB",
       decimals: 18,
     },
-    rpcUrls: ["https://polygon-testnet.public.blastapi.io"],
+    rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
     
-    blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+    blockExplorerUrls: ["https://testnet.bscscan.com"],
   },
 };
 
@@ -58,7 +58,7 @@ export const loadWeb3 = async () => {
       await window.ethereum.enable();
       await window.web3.eth.getChainId((err, netId) => {
         switch (netId.toString()) {
-          case "80001":
+          case "97":
             isItConnected = true;
             break;
           default:

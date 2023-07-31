@@ -12,7 +12,7 @@ import { withdrawInfo } from "../../Redux/withdrawDetail/action";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import Web3 from "web3";
-const web3Supply = new Web3("https://polygon-testnet.public.blastapi.io")
+const web3Supply = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545")
 
 function Withdraw_m(props) {
   let acc = useSelector((state) => state.connect?.connection);
